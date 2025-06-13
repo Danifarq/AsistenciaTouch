@@ -1,6 +1,6 @@
 import './index.css'; 
-import Inicio from './Inicio';
-import Registro from './Registro';
+import Inicio from './Componentes/Inicio';
+import Registro from './Componentes/Registro';
 
 function App() {
   return (
