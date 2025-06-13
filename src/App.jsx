@@ -1,26 +1,17 @@
 import './index.css'; 
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Inicio from './components/Inicio';
 import Registro from './components/Registro';
 
-function App() {
+const App = () => {
   return (
-    <div className="container">
-      <h1>BIENVENIDO</h1>
-
-      <div className="form-row">
-        <label htmlFor="dni">INGRESE DNI:</label>
-        <input type="text" id="dni"/>
-      </div>
-
-      <div className="form-row">
-        <label htmlFor="password">CONTRASEÑA:</label>
-        <input type="password" id="password" />
-      </div>
-
-      <button>ENVIAR</button>
-    </div>
+       <Router>
+      <Routes>
+        <Route path="/" element={<Inicio />} />
+        <Route path="/registro" element={<Registro />} />
+      </Routes>
+    </Router>
   );
 }
-
-
 export default App;

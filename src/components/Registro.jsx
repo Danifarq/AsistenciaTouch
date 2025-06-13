@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState} from 'react';
 
 const Registro = () => {
     const[nombre,setNombre] = useState("");
