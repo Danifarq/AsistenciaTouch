@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import Formulario from "./Formulario";
 
 const Registro = () => {
     const[nombre,setNombre] = useState("");
@@ -15,7 +14,7 @@ const Registro = () => {
     };
 
     return (
-        <form onSubmit={handelSubmit}>
+        <form onSubmit={handleSubmit}>
             <div>
                 <label>nombre:</label>
                 <input
