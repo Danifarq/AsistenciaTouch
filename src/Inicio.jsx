@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 
+
 const Inicio = () => {
     const[dni,setDni]=useState("");
     const[registro,setRegistro]=useState("");
