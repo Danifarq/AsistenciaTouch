@@ -1,4 +1,6 @@
 import './index.css'; 
+import Inicio from './Inicio';
+import Registro from './Registro';
 
 function App() {
   return (
@@ -19,5 +21,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
