@@ -4,11 +4,11 @@ const Registro = () => {
     const[nombre,setNombre] = useState("");
     const[apellido,setApellido] = useState("");
     const[dni,setDni] = useState(""); 
-    const[contraseña,setContraseña]=useState("")
+    const[contrasenia,setContrasenia]=useState("")
 
     const handleSubmit = (e)=>{
         e.preventDefault();
-        alert(`Nombre: ${nombre}, Apellido: ${apellido}, DNI: ${dni}, contraseña: ${contraseña} sin rellenar`);
+        alert(`Nombre: ${nombre}, Apellido: ${apellido}, DNI: ${dni}, contrasenia: ${contrasenia} sin rellenar`);
         console.log("Nombre:",nombre);
         console.log("Apellido:",apellido);
         console.log("Dni:",dni);
@@ -41,11 +41,11 @@ const Registro = () => {
                     />
             </div>
             <div>
-                <label>contraseña</label>
+                <label>contrasenia</label>
                 <input
                 type='password'
-                value={contraseña}
-                onChange={(e)=> setContraseña(e.target.value)}/>
+                value={contrasenia}
+                onChange={(e)=> setContrasenia(e.target.value)}/>
             </div>
             <button type="submit">Enviar</button>
         </form>

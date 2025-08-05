@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 const Inicio = () => {
     const navigate = useNavigate();
     const[dni,setDni]=useState("");
-    const[contraseña,setContraseña]=useState("");
+    const[contrasenia,setContrasenia]=useState("");
     const handleSubmit = (e) => {
         e.preventDefault();
-        alert(`DNI: ${dni}, Registro: ${contraseña} no encontrados`);
+        alert(`DNI: ${dni}, Registro: ${contrasenia} no encontrados`);
            };
              return (
     <div>
@@ -23,9 +23,9 @@ const Inicio = () => {
         <br />
         <input
           type="text"
-          placeholder="Contraseña"
+          placeholder="Contrasenia"
           value={contraseña}
-          onChange={(e) => setContraseña(e.target.value)}
+          onChange={(e) => setContrasenia(e.target.value)}
         />
         <br />
         <button type="submit">Iniciar sesión</button>
