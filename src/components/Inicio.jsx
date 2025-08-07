@@ -24,7 +24,7 @@ const Inicio = () => {
         <input
           type="text"
           placeholder="Contrasenia"
-          value={contraseña}
+          value={contrasenia}
           onChange={(e) => setContrasenia(e.target.value)}
         />
         <br />

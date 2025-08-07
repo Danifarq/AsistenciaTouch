@@ -1,16 +1,12 @@
-import './index.css'; 
+import './index.css';
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Inicio from './components/Inicio';
-import Registro from './components/Registro';
+import Approute from './pages/routes/Approute';
 
 const App = () => {
   return (
-       <Router>
-      <Routes>
-        <Route path="/" element={<Inicio />} />
-        <Route path="/registro" element={<Registro />} />
-      </Routes>
+     <Router>
+      <Approute />
     </Router>
   );
 }
