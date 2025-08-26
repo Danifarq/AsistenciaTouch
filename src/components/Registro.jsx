@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-const Registro = () => {
+const Registro = (children) => {
     const[nombre,setNombre] = useState("");
     const[apellido,setApellido] = useState("");
     const[dni,setDni] = useState(""); 
