@@ -93,4 +93,16 @@ button:hover {
 .form-row input {
   margin: 0; /* es para eliminar margin auto */
 }
+/* agrego los colores para los mensajes de error del registro*/
+.mensaje-error {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.mensaje-exito {
+  color: green;
+  font-weight: bold;
+  margin-top: 10px;
+}
 

@@ -1,35 +1,58 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
-
+import { auth } from '../hooks/firebase';
+import { signInWithEmailAndPassword } from "firebase/auth";
+import '../index.css';
 const Inicio = () => {
     const navigate = useNavigate();
-    const[dni,setDni]=useState("");
+    const [email, setEmail] = useState("");
     const[contrasenia,setContrasenia]=useState("");
-    const handleSubmit = (e) => {
+    const [error, setError] = useState("");
+    const [exito, setExito] = useState("");
+    const handleSubmit =  async  (e) => {
         e.preventDefault();
-        alert(`DNI: ${dni}, Registro: ${contrasenia} no encontrados`);
-           };
+         setError("");
+         try {
+      const credencialesUsuario = await signInWithEmailAndPassword(auth, email, contrasenia);
+ const usuario = {
+        correo: credencialesUsuario.user.email,
+        nombre: credencialesUsuario.user.displayName || "",
+        uid: credencialesUsuario.user.uid,
+      };
+       localStorage.setItem('usuario', JSON.stringify(usuario));
+       setExito(" Inicio de sesión correcto");
+       setTimeout(() => setExito(""), 2000);
+        navigate('/');
+    } catch (err) {
+      console.error("Error al iniciar sesión:", err);
+      if (err.code === "auth/user-not-found") setError(" Usuario no encontrado.");
+      else if (err.code === "auth/wrong-password") setError(" Contraseña incorrecta.");
+      else setError(" No se pudo iniciar sesión.");
+    }
+  };
              return (
     <div>
       <h1>Página de Inicio</h1>
 
       <form onSubmit={handleSubmit}>
         <input
-          type="text"
-          placeholder="DNI"
-          value={dni}
-          onChange={(e) => setDni(e.target.value)}
+          type="email"
+          placeholder="Correo electrónico"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <br />
         <input
-          type="text"
-          placeholder="Contrasenia"
+          type="password"
+          placeholder="Contraseña"
           value={contrasenia}
           onChange={(e) => setContrasenia(e.target.value)}
         />
         <br />
         <button type="submit">Iniciar sesión</button>
       </form>
+  {error && <p className="mensaje-error">{error}</p>}
+  {exito && <p className="mensaje-exito">{exito}</p>}
 
       <button onClick={() => navigate('/registro')}>
         Ir a Registro
