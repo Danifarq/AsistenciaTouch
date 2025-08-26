@@ -1,19 +1,41 @@
 import React, {useState} from 'react';
+import { auth } from '../firebase';
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 const Registro = () => {
     const[nombre,setNombre] = useState("");
     const[apellido,setApellido] = useState("");
     const[dni,setDni] = useState(""); 
     const[contrasenia,setContrasenia]=useState("")
-
-    const handleSubmit = (e)=>{
+    const [email, setEmail] = useState("");
+    const [error, setError] = useState("");
+    const [exito, setExito] = useState("");
+    const handleSubmit = async(e)=>{
         e.preventDefault();
-        alert(`Nombre: ${nombre}, Apellido: ${apellido}, DNI: ${dni}, contrasenia: ${contrasenia} sin rellenar`);
-        console.log("Nombre:",nombre);
-        console.log("Apellido:",apellido);
-        console.log("Dni:",dni);
-    };
+            setError("");
+            setExito("");
 
+try{ 
+     const credencialUsuario = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        contrasenia
+      );
+      setExito("Usuario creado con correctamente");
+      console.log("usuario creado:",credencialUsuario.user);
+    } catch (err){
+        console.error("Error al registrar:", err);
+        if (err.code === "auth/email-already-in-use") {
+            setError("Este correo ya esta registrado. Por favor inicia sesion ");
+             } else if (err.code === "auth/weak-password") {
+              setError("La contraseña es muy debil. Minimo 6 caracteres por favor");
+               } else if (err.code === "auth/invalid-email") {
+                setError("El correo es invalido");
+                } else {
+    setError("No se pudo registrar correctamente");
+    }
+}
+};
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -33,12 +55,12 @@ const Registro = () => {
                     />
             </div>
             <div>
-                <label>dni:</label>
-                <input 
-                    type="text"
-                    value={dni}
-                    onChange={(e)=> setDni(e.target.value)}
-                    />
+                <label>Correo electrónico:</label>
+                <input
+                    type="email"
+                    value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                />
             </div>
             <div>
                 <label>contrasenia</label>
@@ -47,8 +69,13 @@ const Registro = () => {
                 value={contrasenia}
                 onChange={(e)=> setContrasenia(e.target.value)}/>
             </div>
-            <button type="submit">Enviar</button>
+            <button type="submit">Registrarse</button>
+            {error && <p className="mensaje-error">{error}</p>}
+            {exito && <p className="mensaje-exito">{exito}</p>}
+
         </form>
+        
     );
-}
+
+};
 export default Registro;
