@@ -1,10 +1,9 @@
 import React, {useState} from 'react';
-
-const Registro = (children) => {
 import { auth } from '../hooks/firebase';
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-const Registro = () => {
+
+const Registro = (ghildren) => {
     const navigate = useNavigate();
 
     const[nombre,setNombre] = useState("");
