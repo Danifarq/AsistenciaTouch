@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import { useNavigate } from 'react-router-dom';
 import { auth } from '../hooks/firebase';
 import { signInWithEmailAndPassword } from "firebase/auth";
@@ -9,7 +9,6 @@ const Inicio = () => {
     const[contrasenia,setContrasenia]=useState("");
     const [error, setError] = useState("");
     const [exito, setExito] = useState("");
-
     const handleSubmit =  async  (e) => {
         e.preventDefault();
          setError("");

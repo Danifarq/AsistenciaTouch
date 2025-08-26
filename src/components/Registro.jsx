@@ -22,9 +22,8 @@ try{
       );
       setExito("Usuario creado correctamente");
       console.log("usuario creado:",credencialUsuario.user);
-      setTimeout(() => {
-        navigate("/");
-        }, 2000);
+      setTimeout(() => setExito(""), 2000);
+      navigate('/');
     } catch (err){
         console.error("Error al registrar:", err);
         if (err.code === "auth/email-already-in-use") {
@@ -41,7 +40,7 @@ try{
     return (
         <form onSubmit={handleSubmit}>
             <div>
-                <label>nombre:</label>
+                <label>Nombre:</label>
                 <input
                     type="text"
                     value={nombre}
@@ -49,7 +48,7 @@ try{
                     />
             </div>
             <div>
-                <label>apellido:</label>
+                <label>Apellido:</label>
                 <input 
                     type="text"
                     value={apellido}
@@ -65,7 +64,7 @@ try{
                 />
             </div>
             <div>
-                <label>contraseña</label>
+                <label>Contraseña</label>
                 <input
                 type='password'
                 value={contrasenia}
