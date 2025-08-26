@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import { auth } from '../hooks/firebase';
-
+import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-
 const Registro = () => {
+    const navigate = useNavigate();
     const[nombre,setNombre] = useState("");
     const[apellido,setApellido] = useState("");
-    const[dni,setDni] = useState(""); 
-    const[contrasenia,setContrasenia]=useState("")
+    const[contrasenia,setContrasenia]=useState("");
     const [email, setEmail] = useState("");
     const [error, setError] = useState("");
     const [exito, setExito] = useState("");
@@ -15,15 +14,17 @@ const Registro = () => {
         e.preventDefault();
             setError("");
             setExito("");
-
 try{ 
      const credencialUsuario = await createUserWithEmailAndPassword(
         auth,
         email,
         contrasenia
       );
-      setExito("Usuario creado con correctamente");
+      setExito("Usuario creado correctamente");
       console.log("usuario creado:",credencialUsuario.user);
+      setTimeout(() => {
+        navigate("/");
+        }, 2000);
     } catch (err){
         console.error("Error al registrar:", err);
         if (err.code === "auth/email-already-in-use") {
@@ -64,7 +65,7 @@ try{
                 />
             </div>
             <div>
-                <label>contrasenia</label>
+                <label>contraseña</label>
                 <input
                 type='password'
                 value={contrasenia}
