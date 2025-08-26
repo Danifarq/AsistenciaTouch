@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import { auth } from '../firebase';
+import { auth } from '../hooks/firebase';
+
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 
 const Registro = () => {
