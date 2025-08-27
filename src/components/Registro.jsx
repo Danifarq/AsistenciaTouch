@@ -40,7 +40,7 @@ try{
 };
     return (
         <div>
-        <h1>Registro</h1>
+        <h1>Crear una cuenta</h1>
         <form onSubmit={handleSubmit}>
             <div>
                 <label>Nombre:</label>

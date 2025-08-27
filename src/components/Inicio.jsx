@@ -33,7 +33,7 @@ const Inicio = () => {
   };
              return (
     <div>
-      <h1>Página de Inicio</h1>
+      <h1>Iniciar sesión</h1>
 
       <form onSubmit={handleSubmit}>
         <input
@@ -55,7 +55,7 @@ const Inicio = () => {
   {error && <p className="mensaje-error">{error}</p>}
   {exito && <p className="mensaje-exito">{exito}</p>}
   <BotonRedirigir   
-        textoBoton="¿No tenés cuenta? registrate" 
+        textoBoton="¿No tenés cuenta? Regístrate" 
         ruta="/registro" 
       />
     </div>
