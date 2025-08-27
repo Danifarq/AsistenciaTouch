@@ -79,8 +79,7 @@ try{
 
         </form>
         <BotonRedirigir 
-        mensaje="¿Ya tenés cuenta?" 
-        textoBoton="Ir a Iniciar Sesión" 
+        textoBoton="¿Ya tenés cuenta? Iniciar Sesión" 
         ruta="/" 
       />
       </div>

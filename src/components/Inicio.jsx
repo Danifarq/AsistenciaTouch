@@ -54,9 +54,8 @@ const Inicio = () => {
       </form>
   {error && <p className="mensaje-error">{error}</p>}
   {exito && <p className="mensaje-exito">{exito}</p>}
-  <BotonRedirigir 
-        mensaje="¿No tenés cuenta?" 
-        textoBoton="Ir a registro" 
+  <BotonRedirigir   
+        textoBoton="¿No tenés cuenta? registrate" 
         ruta="/registro" 
       />
     </div>
