@@ -1,11 +1,10 @@
 import React, {useState} from 'react';
-import { auth } from '../hooks/firebase';
+import { auth } from '../firebase/firebase';
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-
+import BotonRedirigir from "../components/BotonRedirigir";
 const Registro = (ghildren) => {
     const navigate = useNavigate();
-
     const[nombre,setNombre] = useState("");
     const[apellido,setApellido] = useState("");
     const[contrasenia,setContrasenia]=useState("");
@@ -40,6 +39,8 @@ try{
 }
 };
     return (
+        <div>
+        <h1>Registro</h1>
         <form onSubmit={handleSubmit}>
             <div>
                 <label>Nombre:</label>
@@ -77,7 +78,12 @@ try{
             {exito && <p className="mensaje-exito">{exito}</p>}
 
         </form>
-        
+        <BotonRedirigir 
+        mensaje="¿Ya tenés cuenta?" 
+        textoBoton="Ir a Iniciar Sesión" 
+        ruta="/" 
+      />
+      </div>
     );
 
 };

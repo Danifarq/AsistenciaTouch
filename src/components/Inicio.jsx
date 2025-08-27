@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from "react";
+import React, {useState} from "react";
 import { useNavigate } from 'react-router-dom';
-import { auth } from '../hooks/firebase';
+import { auth } from '../firebase/firebase';
 import { signInWithEmailAndPassword } from "firebase/auth";
+import BotonRedirigir from "../components/BotonRedirigir";
 import '../index.css';
 const Inicio = () => {
     const navigate = useNavigate();
@@ -53,10 +54,11 @@ const Inicio = () => {
       </form>
   {error && <p className="mensaje-error">{error}</p>}
   {exito && <p className="mensaje-exito">{exito}</p>}
-
-      <button onClick={() => navigate('/registro')}>
-        Ir a Registro
-      </button>
+  <BotonRedirigir 
+        mensaje="¿No tenés cuenta?" 
+        textoBoton="Ir a registro" 
+        ruta="/registro" 
+      />
     </div>
   );
   
