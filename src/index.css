@@ -203,4 +203,15 @@ body {
   font-weight: normal;
 }
 
+.menu-wrapper {
+  background: #ffffff;
+  padding: 40px 60px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 
