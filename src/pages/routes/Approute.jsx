@@ -1,5 +1,7 @@
 import Inicio from "../../components/Inicio";
 import Registro from "../../components/Registro";
+import MenuPrincipal from '../../components/MenuPrincipal';
+
 import React, { useEffect } from 'react';
 import  { Routes, Route, useNavigate } from 'react-router-dom';
 
@@ -16,6 +18,7 @@ window.addEventListener('popstate', handlePopState);
   return (
       <Routes>
         <Route path="/" element={<Inicio />} />
+        <Route path="/MenuPrincipal" element={<MenuPrincipal />} />
         <Route path="/Registro" element={<Registro />} />
       </Routes>
   );

@@ -23,7 +23,7 @@ const Inicio = () => {
        localStorage.setItem('usuario', JSON.stringify(usuario));
        setExito(" Inicio de sesión correcto");
        setTimeout(() => setExito(""), 2000);
-        navigate('/');
+        navigate('/MenuPrincipal');
     } catch (err) {
       console.error("Error al iniciar sesión:", err);
       if (err.code === "auth/user-not-found") setError(" Usuario no encontrado.");

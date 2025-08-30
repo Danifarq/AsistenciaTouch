@@ -20,6 +20,7 @@ const MenuPrincipal = () => {
           </option>
         ))}
       </select>
+    
     </div>
   );
 };
