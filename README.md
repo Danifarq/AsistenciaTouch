@@ -52,7 +52,12 @@ Estas pantallas fueron diseñadas para que el proceso de registrar asistencia se
 - **Fuentes legibles:** Se usaron letras grandes y espaciadas para facilitar la lectura en pantallas táctiles.
 
 ## 💡 Justificación del estilo elegido
-El estilo fue pensado para entornos escolares donde los docentes deben interactuar con una pantalla rápidamente. Por eso se usaron colores suaves, botones grandes y una estructura paso a paso. Esto mejora la experiencia del usuario y reduce erro
+El estilo fue pensado para entornos escolares donde los docentes deben interactuar con una pantalla rápidamente. Por eso se usaron colores suaves, botones grandes y una estructura paso a paso. Esto mejora la experiencia del usuario y reduce error 
+
+##  Trabajo en equipo 
+
+Algunos commits del equipo se hicieron para arreglar merge conflicts que surgieron al juntar el trabajo de todos, y otros para resolver problemas que algún compañero no pudo solucionar. Esto demuestra cómo vamos colaborando, ayudándonos entre todos y asegurándonos de que el proyecto siga avanzando sin trabas.  
+ 
 
 **Historial de push Daniela Rojas**
 17/05/2025 
@@ -188,3 +193,4 @@ Registro de Pushes Santi
 **-Commit:**  Eliminando diseño 1 
 
 **-Commit:** Borrando diseño 1 png  
+
