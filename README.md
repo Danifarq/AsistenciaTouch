@@ -56,9 +56,12 @@ El estilo fue pensado para entornos escolares donde los docentes deben interactu
 
 ##  Trabajo en equipo 
 
-Algunos commits del equipo se hicieron para arreglar merge conflicts que surgieron al juntar el trabajo de todos, y otros para resolver problemas que algún compañero no pudo solucionar. Esto demuestra cómo vamos colaborando, ayudándonos entre todos y asegurándonos de que el proyecto siga avanzando sin trabas.  
- 
+Algunos commits del equipo se hicieron para arreglar merge conflicts que surgieron al juntar el trabajo de todos, y otros para resolver problemas que algún compañero no pudo solucionar. Esto demuestra cómo vamos colaborando, ayudándonos entre todos y asegurándonos de que el proyecto siga avanzando sin trabas. 
 
+##  Cambios en el diseño 
+
+Algunos cambios en el diseño de las páginas se hicieron totalmente para mejorar su funcionamiento. Se crearon botones de navegación y se reorganizó la interfaz para que sea más intuitiva y fácil de usar. Esto hace que la experiencia del usuario sea más fluida y agradable, además de mantener la eficiencia del sitio. 
+ 
 **Historial de push Daniela Rojas**
 17/05/2025 
 
