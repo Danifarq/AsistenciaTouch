@@ -132,3 +132,27 @@ El estilo fue pensado para entornos escolares donde los docentes deben interactu
 **-Commit:**  resolución de fusión registro  
 
 **-Commit:**  registro de componentes  
+
+**Historial de push de mateo**  
+
+12/06/2025
+
+**-Commit:** Arreglos pantalla principal 
+
+**-Commit:** Arreglos en pantalla de inicio 
+
+**-Commit:** Pantalla de bienvenida 
+
+30/08/2025 
+
+ **-Commit:** Creando pantalla principal 
+
+**-Commit:** Arreglos en pantalla de sesion 
+
+**-Commit:** Arreglos en pantalla de bienvenida 
+
+**-Commit:** Mensaje de bienvenida y boton de siguiente 
+
+**-Commit:** Aplicando estilos en bienvenida 
+
+
