@@ -1,12 +1,17 @@
 # 📲 AsistenciaTouch
 
 ## 👥 Nombre del grupo e integrantes
-**PincaProgrammers**  
-- Daniela Rojas  
-- Mateo Contreras  
-- Santiago Urra  
-- Bautista Scavarda  
-- Santiago Golpe  
+PincaProgrammers 
+
+Daniela Rojas: Encargada de la programación de la base de datos  
+
+Mateo Contreras: Desarrollador y responsable del diseño del CSS 
+
+Santiago Urra: Diseñador de interfaces y estilos visuales 
+
+Bautista Scavarda: Encargado de la programación de la base de datos 
+
+Santiago Golpe: Responsable de la documentación del proyecto 
 
 ## 🎯 Nombre y objetivo de la app
 **AsistenciaTouch** es una app diseñada para registrar de manera ágil y eficiente la asistencia de profesores de teoría. Su objetivo es facilitar el control de entradas mediante una interfaz táctil, rápida y visualmente clara.
@@ -46,5 +51,5 @@ Estas pantallas fueron diseñadas para que el proceso de registrar asistencia se
 - **Fuentes legibles:** Se usaron letras grandes y espaciadas para facilitar la lectura en pantallas táctiles.
 
 ## 💡 Justificación del estilo elegido
-El estilo fue pensado para entornos escolares donde los docentes deben interactuar con una pantalla rápidamente. Por eso se usaron colores suaves, botones grandes y una estructura paso a paso. Esto mejora la experiencia del usuario y reduce errores.
+El estilo fue pensado para entornos escolares donde los docentes deben interactuar con una pantalla rápidamente. Por eso se usaron colores suaves, botones grandes y una estructura paso a paso. Esto mejora la experiencia del usuario y reduce erro
 
