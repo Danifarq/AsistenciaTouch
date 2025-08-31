@@ -17,8 +17,7 @@ Santiago Golpe: Responsable de la documentación del proyecto
 **AsistenciaTouch** es una app diseñada para registrar de manera ágil y eficiente la asistencia de profesores de teoría. Su objetivo es facilitar el control de entradas mediante una interfaz táctil, rápida y visualmente clara.
 
 ## 🛠️ Herramientas utilizadas
-- Canva (para el diseño de pantallas)
-
+Herramientas utilizadas con React, Node, Firebase, Visual Code, Canva, jsx, etc. 
 ## 🖼️ Descripción breve de cada pantalla
 
 - **Pantalla de Bienvenida:** Da la bienvenida y solicita ingresar el DNI.
