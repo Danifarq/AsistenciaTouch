@@ -110,7 +110,7 @@ button:hover {
 body {
   margin: 0;
   padding: 0;
-  background-color: #c8e9ea; /* celeste claro */
+  background-color: #c8e9ea;
   font-family: 'Georgia', serif;
   display: flex;
   justify-content: center;
@@ -125,11 +125,10 @@ body {
   gap: 10px;
 }
 
-/* Label */
 .curso-label {
   font-size: 2rem;
   font-weight: bold;
-  color: #255b5b; /* verde oscuro */
+  color: #255b5b; 
 }
 
 /* Select */
@@ -138,8 +137,8 @@ body {
   -webkit-appearance: none;
   -moz-appearance: none;
 
-  background-color: #255b5b; /* verde oscuro */
-  color: #ffffff; /* blanco */
+  background-color: #255b5b; 
+  color: #ffffff; 
   font-size: 1.5rem;
   font-family: 'Georgia', serif;
 
@@ -159,7 +158,7 @@ body {
   font-size: 1.2rem;
 }
 
-/* Flecha personalizada */
+/* Flecha  */
 .curso-select {
   background-image: url("data:image/svg+xml;utf8,<svg fill='%23c8e9ea' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
   background-repeat: no-repeat;
@@ -167,7 +166,6 @@ body {
   background-size: 20px;
 }
 
-/* Scroll estilizado para el menú desplegable */
 .curso-select::-webkit-scrollbar {
   width: 6px;
 }
@@ -180,4 +178,29 @@ body {
   background: #c8e9ea;
   border-radius: 10px;
 }
+
+.menu-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.welcome-container {
+  text-align: center;
+}
+
+.welcome-title {
+  font-size: 3rem;
+  color: #255b5b;
+  margin: 0;
+}
+
+.welcome-subtitle {
+  font-size: 1.5rem;
+  color: #255b5b;
+  margin: 10px 0 0 0;
+  font-weight: normal;
+}
+
 
