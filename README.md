@@ -54,3 +54,42 @@ Estas pantallas fueron diseñadas para que el proceso de registrar asistencia se
 ## 💡 Justificación del estilo elegido
 El estilo fue pensado para entornos escolares donde los docentes deben interactuar con una pantalla rápidamente. Por eso se usaron colores suaves, botones grandes y una estructura paso a paso. Esto mejora la experiencia del usuario y reduce erro
 
+**Historial de push Daniela Rojas**
+17/05/2025 
+
+ 
+
+**-Commit:** Se agrega el Proyecto 
+
+6/06/2025 
+**-Commit:** Primer commit del diseño de AsistenciaTouch 
+
+13/06/2025    
+
+**-Commit:** integracion de rutas
+
+**-Commit:** Merge branch 'main' of https://github.com/Danifarq/AsistenciaTouch 
+
+**-Commit:** estructura y rutas corregidas  
+
+25/08/2025    
+
+**-Commit:** Agrege FireB al Registro  
+
+**-Commit:** Agregando FireB a Inicio  
+
+26/08/2025   
+
+**-Commit:** Ruta de Registro a Inicio  
+
+**-Commit:** Flechas del navegador y mayusculas  
+
+**-Commit:** Componente Botón Redirigir  
+
+**-Commit:** Textos actualizados de BotonRedirigir  
+
+**-Commit:** Títulos más claros  
+
+30/08/2025  
+
+**-Commit:** Agregando la ruta a MenuPrincipal 
