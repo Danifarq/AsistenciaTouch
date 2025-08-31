@@ -106,3 +106,78 @@ button:hover {
   margin-top: 10px;
 }
 
+/* Fondo general */
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #c8e9ea; /* celeste claro */
+  font-family: 'Georgia', serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Contenedor principal */
+.menu-principal-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Label */
+.curso-label {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #255b5b; /* verde oscuro */
+}
+
+/* Select */
+.curso-select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  background-color: #255b5b; /* verde oscuro */
+  color: #ffffff; /* blanco */
+  font-size: 1.5rem;
+  font-family: 'Georgia', serif;
+
+  padding: 15px 50px 15px 20px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  outline: none;
+
+  position: relative;
+}
+
+/* Opciones */
+.curso-select option {
+  background-color: #255b5b;
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+
+/* Flecha personalizada */
+.curso-select {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='%23c8e9ea' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 15px center;
+  background-size: 20px;
+}
+
+/* Scroll estilizado para el menú desplegable */
+.curso-select::-webkit-scrollbar {
+  width: 6px;
+}
+
+.curso-select::-webkit-scrollbar-track {
+  background: #255b5b;
+}
+
+.curso-select::-webkit-scrollbar-thumb {
+  background: #c8e9ea;
+  border-radius: 10px;
+}
+
