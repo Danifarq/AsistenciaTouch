@@ -19,7 +19,9 @@ Santiago Golpe: Responsable de la documentación del proyecto
 ## 🛠️ Herramientas utilizadas
 Herramientas utilizadas con React, Node, Firebase, Visual Code, Canva, jsx, etc. 
 ## 🖼️ Descripción breve de cada pantalla
+-**Pantalla de Inicio Sesion:** Pantalla creada para el inicio de sesion 
 
+-**Pantalla de Registro: Pantalla** creada para el registro  
 - **Pantalla de Bienvenida:** Da la bienvenida y solicita ingresar el DNI.
 - **Pantalla de Selección de Curso:** Muestra opciones de curso como 6° 2°, 1° 3°, 1° 2°.
 - **Pantalla de Selección de Materia:** Lista materias como Sistemas Operativos, Redes, Computación Gráfica, etc.
