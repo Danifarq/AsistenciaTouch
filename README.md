@@ -52,20 +52,15 @@ Estas pantallas fueron diseñadas para que el proceso de registrar asistencia se
 - **Fuentes legibles:** Se usaron letras grandes y espaciadas para facilitar la lectura en pantallas táctiles.
 
 ## 💡 Justificación del estilo elegido
-El estilo fue pensado para entornos escolares donde los docentes deben interactuar con una pantalla rápidamente. Por eso se usaron colores suaves, botones grandes y una estructura paso a paso. Esto mejora la experiencia del usuario y reduce error 
+El estilo fue pensado para entornos escolares donde los docentes deben interactuar con una pantalla rápidamente. Por eso se usaron colores suaves, botones grandes y una estructura paso a paso. Esto mejora la experiencia del usuario y reduce error
+
 
 ##  Trabajo en equipo 
 
 Algunos commits del equipo se hicieron para arreglar merge conflicts que surgieron al juntar el trabajo de todos, y otros para resolver problemas que algún compañero no pudo solucionar. Esto demuestra cómo vamos colaborando, ayudándonos entre todos y asegurándonos de que el proyecto siga avanzando sin trabas. 
 
-##  Cambios en el diseño 
-
-Algunos cambios en el diseño de las páginas se hicieron totalmente para mejorar su funcionamiento. Se crearon botones de navegación y se reorganizó la interfaz para que sea más intuitiva y fácil de usar. Esto hace que la experiencia del usuario sea más fluida y agradable, además de mantener la eficiencia del sitio. 
- 
 **Historial de push Daniela Rojas**
 17/05/2025 
-
- 
 
 **-Commit:** Se agrega el Proyecto 
 
@@ -141,7 +136,7 @@ Algunos cambios en el diseño de las páginas se hicieron totalmente para mejora
 
 **-Commit:**  registro de componentes  
 
-**Historial de push de mateo**  
+**Historial de push de Mateo**  
 
 12/06/2025
 
@@ -163,7 +158,7 @@ Algunos cambios en el diseño de las páginas se hicieron totalmente para mejora
 
 **-Commit:** Aplicando estilos en bienvenida 
 
-Registro de Pushes Santi
+**Registro de Pushes Santi S**
 
 30/08/2025
 
@@ -197,3 +192,26 @@ Registro de Pushes Santi
 
 **-Commit:** Borrando diseño 1 png  
 
+**Registro de Pushes Santi G**
+
+31/08/2025 
+
+**-Commit:** Texto de cambio del diseño 
+
+**-Commit:** Texto de trabajo en equipo 
+
+**-Commit:** Historial de commits Santi S 
+
+**-Commit:** Historial de push Mateo 
+
+**-Commit:** Historial de push Bauti 
+
+**-Commit:** Historial de commits Dani 
+
+**-Commit:** actualizacion de pantallas nuevas 
+
+**-Commit:** Agregados en herramientas y tecnologias de desarrollo 
+
+**-Commit:** cambios en las presentaciones de los integrantes e roles 
+
+**-Commit:** Historial de commits Santi G 
