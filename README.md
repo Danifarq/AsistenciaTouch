@@ -93,3 +93,42 @@ El estilo fue pensado para entornos escolares donde los docentes deben interactu
 30/08/2025  
 
 **-Commit:** Agregando la ruta a MenuPrincipal 
+
+  **Historial de Push Bautista Perez**  
+12/06/2025 
+
+**-Commit:** creado registro, inicio y cambios en la APP  
+
+13/06/2025 
+
+**-Commit:** renombrar carpeta 
+
+**-Commit:** arreglo de estructura de raíz  
+
+**-Commit:** reiniciar la aplicación 
+
+**-Commit:** Fusionar rama 'main' de https://github.com/Danifarq/AsistenciaTouch  
+
+**-Commit:** correcciones 
+
+17/06/2025 
+
+**-Commit:** cambios en inicio y registro   
+30/07/2025 
+
+**-Commit:** carpetas y bloqueos de FireBase   
+
+5/08/2025 
+
+**-Commit:** Aproximación y contrasenia  
+7/08/2025 
+
+**-Commit:** rutas cargadas y corriendo   
+
+26/08/2025 
+
+**-Commit:**  registro alojamiento tras el niños  
+
+**-Commit:**  resolución de fusión registro  
+
+**-Commit:**  registro de componentes  
