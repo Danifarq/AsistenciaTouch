@@ -155,4 +155,36 @@ El estilo fue pensado para entornos escolares donde los docentes deben interactu
 
 **-Commit:** Aplicando estilos en bienvenida 
 
+Registro de Pushes Santi
 
+30/08/2025
+
+**-Commit:** Actualizacion pdf de diseños 
+
+**-Commit:** Actualizacion de diseño bienvenido 
+
+**-Commit:** Actualizacion de diseño crear cuenta 
+
+**-Commit:** Actualizacion de diseño inicio sesion 
+
+**-Commit:** Renomrando pdf de diseño anterior 
+
+**-Commit:** Renomrando pdf de diseño anterior 
+
+**-Commit:** Eliminando diseño 7 
+
+**-Commit:** Eliminando diseño 6 
+
+**-Commit:**Eliminando diseño 5 
+
+**-Commit:** Eliminando diseño 4 
+
+**-Commit:** Eliminando diseño 3 
+
+**-Commit:** Eliminando diseño 2 
+
+**-Commit:** Resolviendo merge pendiente 
+
+**-Commit:**  Eliminando diseño 1 
+
+**-Commit:** Borrando diseño 1 png  
