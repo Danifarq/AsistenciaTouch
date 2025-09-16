@@ -1,57 +1,94 @@
-
 import React, { useState } from 'react';
-import { signInWithPopup } from "firebase/auth";
-import { auth, googleProvider } from '../firebase/firebase.jsx'; 
-
+import { useNavigate} from 'react-router-dom';
+import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider } from '../firebase/firebase.jsx';
+import BotonRedirigir from '../components/BotonRedirigir';
 const Login = () => {
-    const [username, setUsername] = useState("");
-    const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+    const [email, setEmail] = useState('');
+    const [contrasenia, setContrasenia] = useState('');
+    const [error, setError] = useState('');
+    const [exito, setExito] = useState('');
 
-     // Login por email
-    const handleSubmit = (e)=>{
+    // Lógica de autenticación con correo y contraseña
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        alert(`Username: ${username}, Password: ${password}`);
-        console.log("Username:", username);
-        console.log("Password:", password);
+        setError('');
+        try {
+            const credencialesUsuario = await signInWithEmailAndPassword(auth, email, contrasenia);
+            const usuario = {
+                correo: credencialesUsuario.user.email,
+                nombre: credencialesUsuario.user.displayName || '',
+                uid: credencialesUsuario.user.uid,
+            };
+            localStorage.setItem('usuario', JSON.stringify(usuario));
+            setExito("Inicio de sesión correcto");
+            setTimeout(() => setExito(""), 2000);
+            navigate('/MenuPrincipal');
+        } catch (err) {
+            console.error("Error al iniciar sesión:", err);
+            if (err.code === "auth/user-not-found") setError("Usuario no encontrado.");
+            else if (err.code === "auth/wrong-password") setError("Contraseña incorrecta.");
+            else setError("No se pudo iniciar sesión.");
+        }
     };
-  // Manejador para el login con Google
+
+    // Lógica de autenticación con Google
     const handleGoogleLogin = async () => {
         try {
             const result = await signInWithPopup(auth, googleProvider);
             const user = result.user;
             console.log("Usuario autenticado con Google:", user);
-            alert(`¡Bienvenido, ${user.displayName}!`);
+            localStorage.setItem('usuario', JSON.stringify({
+                correo: user.email,
+                nombre: user.displayName,
+                uid: user.uid,
+            }));
+            setExito("Inicio de sesión con Google correcto");
+            setTimeout(() => setExito(""), 2000);
+            navigate('/MenuPrincipal');
         } catch (error) {
             console.error("Error al iniciar sesión con Google:", error);
-            alert(`Error al iniciar sesión: ${error.message}`);
+            setError("No se pudo iniciar sesión con Google.");
         }
     };
 
-    return(
-        <div>
-        <form onSubmit={handleSubmit}>
+    return (
+        <div className="menu-wrapper">
             <div>
-                <label>Username:</label>
-                <input 
-                    type="text" 
-                    value={username} 
-                    onChange={(e)=> setUsername(e.target.value)} 
-                />
-            </div>
-            <div>
-                <label>Password:</label>
-                <input 
-                    type="password" 
-                    value={password} 
-                    onChange={(e)=> setPassword(e.target.value)} 
-                />
-            </div>
-            <button type="submit">Login</button>
-            </form>
-             <div>
-                <button onClick={handleGoogleLogin}>
-                    Inicia sesión con Google 
-                </button>
+                <h1>Iniciar sesión</h1>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="email"
+                        placeholder="Correo electrónico"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                    <br />
+                    <input
+                        type="password"
+                        placeholder="Contraseña"
+                        value={contrasenia}
+                        onChange={(e) => setContrasenia(e.target.value)}
+                    />
+                    <br />
+                    <button type="submit">Iniciar sesión</button>
+                </form>
+
+                {error && <p className="mensaje-error">{error}</p>}
+                {exito && <p className="mensaje-exito">{exito}</p>}
+
+                <div >
+                
+                    <button onClick={handleGoogleLogin}>
+                        Inicia sesión con Google 
+                    </button>
+                </div>
+                <div >
+                 <BotonRedirigir 
+                    textoBoton="¿No tenés cuenta? Regístrate" 
+                    ruta="/Registro" 
+                /></div>
             </div>
         </div>
     );
