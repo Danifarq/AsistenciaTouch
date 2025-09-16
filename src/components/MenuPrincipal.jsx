@@ -13,20 +13,20 @@ const MenuPrincipal = () => {
           <h2 className="welcome-subtitle">Seleccione su curso:</h2>
         </div>
 
-        <div className="menu-principal-container">
-          <label className="curso-label">CURSO:</label>
-          <select
-            className="curso-select"
-            value={cursoSeleccionado}
-            onChange={(e) => setCursoSeleccionado(e.target.value)}
-          >
-            <option value="">Seleccione un curso</option>
-            {cursos.map((curso, index) => (
-              <option key={index} value={curso}>
-                {curso}
-              </option>
-            ))}
-          </select>
+    <div className="menu-principal-container">
+      <label className="curso-label">CURSO:</label>
+      <select
+        className="curso-select"
+        value={cursoSeleccionado}
+        onChange={(e) => setCursoSeleccionado(e.target.value)}
+      >
+        <option value="">Seleccione un curso</option>
+        {cursos.map((curso, index) => (
+          <option key={index} value={curso}>
+            {curso}
+          </option>
+        ))}
+      </select>
         </div>
 
         <button className="next-button">Siguiente</button>
