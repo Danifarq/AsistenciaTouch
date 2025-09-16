@@ -1,25 +1,39 @@
-
-import { collection, addDoc, doc, setDoc } from 'firebase/firestore';
+import { doc, setDoc } from 'firebase/firestore';
 import { db, auth } from '../firebase/firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 
 export const crearUsuario = async ({ usuario, contrasena, rol, ...otrosDatos }) => {
+  if (!usuario || !contrasena) {
+    console.error("Faltan el correo o la contraseña.");
+    return { exito: false, mensaje: "Faltan datos obligatorios." };
+  }
+
   try {
-    // 1. Crea el usuario en Firebase Authentication
     const userCredential = await createUserWithEmailAndPassword(auth, usuario, contrasena);
     const user = userCredential.user;
 
-    // 2. Guarda los datos adicionales en Firestore
     await setDoc(doc(db, 'usuarios', user.uid), {
-      email: usuario,
-      rol: rol || 'estudiante', // Asigna 'estudiante' si no se especifica un rol
-      uid: user.uid,
-      ...otrosDatos // Guarda cualquier otro dato del formulario
+      rol: rol || 'usuario',
+      ...otrosDatos
     });
     
-    return true;
+    return { exito: true, mensaje: "Usuario creado con éxito." };
   } catch (error) {
-    console.error("Error al crear usuario:", error);
-    return false;
+    let mensajeError;
+    switch (error.code) {
+      case 'auth/email-already-in-use':
+        mensajeError = "Este correo ya está registrado.";
+        break;
+      case 'auth/invalid-email':
+        mensajeError = "El formato del correo es inválido.";
+        break;
+      case 'auth/weak-password':
+        mensajeError = "La contraseña es muy débil. Debe tener al menos 6 caracteres.";
+        break;
+      default:
+        mensajeError = "Ocurrió un error al crear el usuario. Por favor, inténtelo de nuevo.";
+        console.error("Error al crear usuario:", error);
+    }
+    return { exito: false, mensaje: mensajeError };
   }
 };
