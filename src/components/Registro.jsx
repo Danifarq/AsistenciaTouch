@@ -3,6 +3,7 @@ import { auth } from '../firebase/firebase';
 import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import BotonRedirigir from "../components/BotonRedirigir";
+import { crearUsuario } from '../hooks/useUsuarios';
 const Registro = (ghildren) => {
     const navigate = useNavigate();
     const[nombre,setNombre] = useState("");
@@ -16,17 +17,26 @@ const Registro = (ghildren) => {
             setError("");
             setExito("");
 try{ 
-     const credencialUsuario = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        contrasenia
-      );
-      setExito("Usuario creado correctamente");
-      console.log("usuario creado:",credencialUsuario.user);
-      setTimeout(() => setExito(""), 2000);
-      navigate('/');
-    } catch (err){
-        console.error("Error al registrar:", err);
+ const resultado = await crearUsuario({
+                usuario: email,
+                contrasena: contrasenia,
+                rol: 'usuario', 
+                nombre: nombre,
+                apellido: apellido,
+            });
+
+            if (resultado) {
+                setExito("Usuario creado correctamente");
+                console.log("usuario creado:", email); 
+                setTimeout(() => {
+                    setExito("");
+                    navigate('/');
+                }, 2000);
+            } else {
+                setError("No se pudo registrar correctamente");
+            }
+        } catch (err) {
+            console.error("Error al registrar:", err);
         if (err.code === "auth/email-already-in-use") {
             setError("Este correo ya esta registrado. Por favor inicia sesion ");
              } else if (err.code === "auth/weak-password") {
