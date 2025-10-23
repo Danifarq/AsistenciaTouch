@@ -158,6 +158,9 @@ Algunos commits del equipo se hicieron para arreglar merge conflicts que surgier
 
 **-Commit:** Aplicando estilos en bienvenida 
 
+30/09/2025
+**-Commit:** agregado de listenById en profesores y admin
+
 **Registro de Pushes Santi S**
 
 30/08/2025
@@ -215,3 +218,4 @@ Algunos commits del equipo se hicieron para arreglar merge conflicts que surgier
 **-Commit:** cambios en las presentaciones de los integrantes e roles 
 
 **-Commit:** Historial de commits Santi G 
+13/10/2025
