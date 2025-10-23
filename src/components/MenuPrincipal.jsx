@@ -66,7 +66,12 @@ const MenuPrincipal = () => {
               </select>
             </div>
             <button className="next-button">Siguiente</button>
-          </div>
+             <button onClick={() => navigate("/lista-profesores")}>
+              Ver lista de profesores</button>
+<br />
+            <button onClick={() => navigate("/alta-profesor")}>
+       Agregar nuevo profesor</button>
+        </div>
         )}
       </div>
     </div>

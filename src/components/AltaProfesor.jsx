@@ -67,9 +67,12 @@ const AltaProfesor = () => {
         <button type="submit" disabled={guardando}>
           {guardando ? "Guardando..." : "Guardar"}
         </button>
+        <button onClick={() => navigate("/lista-profesores")}>Volver a la lista
+</button>
       </form>
 
       {mensaje && <p>{mensaje}</p>}
     </div>
+    
   );
 }; export default AltaProfesor;
