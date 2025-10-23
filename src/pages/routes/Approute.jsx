@@ -22,8 +22,8 @@ const Approute = () => {
 
       <Route path="/inicio" element={<ProteccionRutas><Inicio /></ProteccionRutas>} />
       <Route path="/menuprincipal" element={<ProteccionRutas><MenuPrincipal /></ProteccionRutas>} />
-      <Route path="/profesores"element={<RutaProtegida><ListaProfesores /> </RutaProtegida>}/>
-      <Route path="/profesor/:id"element={<RutaProtegida><DetalleProfesor /></RutaProtegida>}/>
+      <Route path="/profesores"element={<ProteccionRutas><ListaProfesores /> </ProteccionRutas>}/>
+      <Route path="/profesor/:id"element={<ProteccionRutas><DetalleProfesor /></ProteccionRutas>}/>
       //*Ejemplo de rutas protegidas por roles
       <Route path="/alta-profesor" element={<ProteccionRutas roleRequired="profesor"><AltaProfesor /></ProteccionRutas>} />
       //* En caso de que se intente acceder a una ruta inexistente, redirigir al inicio

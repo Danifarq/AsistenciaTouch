@@ -7,6 +7,7 @@ import { doc, getDoc } from "firebase/firestore";
 const DetalleProfesor = () => {
   const { id } = useParams();
   const [profesor, setProfesor] = useState(null);
+   const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
     const obtenerProfesor = async () => {
@@ -15,12 +16,13 @@ const DetalleProfesor = () => {
       if (docSnap.exists()) {
         setProfesor(docSnap.data());
       }
+       setCargando(false);
     };
     obtenerProfesor();
   }, [id]);
 
-  if (!profesor) return <p>Cargando datos...</p>;
-
+ if (cargando) return <p>Cargando datos...</p>;
+ if (!profesor) return <p>Profesor no encontrado.</p>;
   return (
     <div>
       <h2>Detalle del Profesor</h2>
