@@ -135,6 +135,8 @@ Algunos commits del equipo se hicieron para arreglar merge conflicts que surgier
 **-Commit:**  resolución de fusión registro  
 
 **-Commit:**  registro de componentes  
+09/09/2025
+**-Commit:**  carpeta ganchos, ademin y profesores cargados
 
 **Historial de push de Mateo**  
 
