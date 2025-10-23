@@ -7,6 +7,8 @@ import Registro from "../../components/Registro";
 import MenuPrincipal from '../../components/MenuPrincipal';
 import AltaProfesor from '../../components/AltaProfesor';
 import ProteccionRutas from "../../components/ProteccionRutas.jsx";
+import ListaProfesores from "../../components/ListaProfesores";
+import DetalleProfesor from "../../components/DetalleProfesor";
 
 const Approute = () => {
  return (
@@ -17,9 +19,11 @@ const Approute = () => {
       <Route path="/registro" element={<Registro />} />
 
       //* Rutas protegidas que requieren un usuario logueado
+
       <Route path="/inicio" element={<ProteccionRutas><Inicio /></ProteccionRutas>} />
       <Route path="/menuprincipal" element={<ProteccionRutas><MenuPrincipal /></ProteccionRutas>} />
-      
+      <Route path="/profesores"element={<RutaProtegida><ListaProfesores /> </RutaProtegida>}/>
+      <Route path="/profesor/:id"element={<RutaProtegida><DetalleProfesor /></RutaProtegida>}/>
       //*Ejemplo de rutas protegidas por roles
       <Route path="/alta-profesor" element={<ProteccionRutas roleRequired="profesor"><AltaProfesor /></ProteccionRutas>} />
       //* En caso de que se intente acceder a una ruta inexistente, redirigir al inicio
