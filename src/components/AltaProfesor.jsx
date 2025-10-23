@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 import { db } from "../firebase/firebase";
 import { collection, addDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom"; 
+
 const AltaProfesor = () => {
   const [nombre, setNombre] = useState("");
   const [materia, setMateria] = useState("");
   const [email, setEmail] = useState("");
   const [mensaje, setMensaje] = useState("");
-
+  const [guardando, setGuardando] = useState(false);
+  const navigate = useNavigate();
   
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,24 +18,33 @@ const AltaProfesor = () => {
       return;
     }
       try {
-      await addDoc(collection(db, "profesores"), {
+      setGuardando(true);
+       const docRef = await addDoc(collection(db, "profesores"), {
         nombre,
         materia,
         email,
       });
-      setMensaje("Profesor agregado con éxito");
+
+      setMensaje("Profesor agregado con éxito.");
       setNombre("");
       setMateria("");
       setEmail("");
+
+       setTimeout(() => {
+        navigate(`/profesor/${docRef.id}`);
+      }, 1000); // Espera 1 segundo para que se vea el mensaje
     } catch (error) {
       console.error("Error al guardar profesor:", error);
-      setMensaje("Ocurrió un error al guardar los datos");
+      setMensaje("Ocurrió un error al guardar los datos.");
+    } finally {
+      setGuardando(false);
     }
   };
   return (
-    <div>
+    <div className="p-4">
       <h2>Alta de Profesor</h2>
-      <form onSubmit={handleSubmit}>
+
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <input
           type="text"
           placeholder="Nombre"
@@ -51,11 +63,13 @@ const AltaProfesor = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button type="submit">Guardar</button>
+
+        <button type="submit" disabled={guardando}>
+          {guardando ? "Guardando..." : "Guardar"}
+        </button>
       </form>
+
       {mensaje && <p>{mensaje}</p>}
     </div>
   );
-};
-
-export default AltaProfesor;
+}; export default AltaProfesor;
