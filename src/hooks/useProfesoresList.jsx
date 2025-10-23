@@ -1,30 +1,30 @@
-
-import { useEffect, useState } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore"; 
+// src/hooks/useProfesoresList.js
+import { useState, useEffect } from "react";
 import { db } from "../firebase/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 export const useProfesoresList = () => {
   const [profesores, setProfesores] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [cargando, setCargando] = useState(true);
 
   useEffect(() => {
     const obtenerProfesores = async () => {
       try {
-        const q = query(collection(db, 'usuarios'), where("rol", "==", "profesor"));
-        const querySnapshot = await getDocs(q);
-        const listaProfesores = querySnapshot.docs.map(doc => ({
+        const querySnapshot = await getDocs(collection(db, "profesores"));
+        const lista = querySnapshot.docs.map((doc) => ({
           id: doc.id,
-          ...doc.data()
+          ...doc.data(),
         }));
-        setProfesores(listaProfesores);
-        setLoading(false);
+        setProfesores(lista);
       } catch (error) {
         console.error("Error al obtener profesores:", error);
-        setLoading(false);
+      } finally {
+        setCargando(false);
       }
     };
+
     obtenerProfesores();
   }, []);
 
-  return { profesores, loading };
+  return { profesores, cargando };
 };
