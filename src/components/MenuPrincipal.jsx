@@ -12,13 +12,8 @@ const MenuPrincipal = () => {
   const { user, userRole, loading: authLoading } = useAuth();
   const { profesores, loading: profesoresLoading } = useProfesoresList();
 
-  if (authLoading || profesoresLoading) {
-    return <div>Cargando menú...</div>;
-  }
-  
-  if (!user) {
-    return <div>Por favor, inicia sesión para acceder.</div>;
-  }
+  if (authLoading || profesoresLoading) { return <div>Cargando menú...</div>;}
+   if (!user) { return <div>Por favor, inicia sesión para acceder.</div>;}
 
   return (
     <div className="menu-wrapper">
@@ -26,8 +21,6 @@ const MenuPrincipal = () => {
         <div className="welcome-container">
           <h1 className="welcome-title">Bienvenido</h1>
         </div>
-
-        
         {userRole === 'admin' && (
           <div className="admin-container">
             <h2>Panel de Administrador</h2>
@@ -47,7 +40,7 @@ const MenuPrincipal = () => {
             </ul>
           </div>
         )}
-        {userRole !== 'admin' && (
+         {userRole !== 'admin' && (
           <div className="student-container">
             <h2 className="welcome-subtitle">Seleccione su curso:</h2>
             <div className="menu-principal-container">
@@ -65,13 +58,25 @@ const MenuPrincipal = () => {
                 ))}
               </select>
             </div>
-            <button className="next-button">Siguiente</button>
-             <button onClick={() => navigate("/lista-profesores")}>
-              Ver lista de profesores</button>
-<br />
-            <button onClick={() => navigate("/alta-profesor")}>
-       Agregar nuevo profesor</button>
-        </div>
+
+            <button
+              className="next-button"
+              onClick={() => {
+                if(cursoSeleccionado) navigate(`/curso/${cursoSeleccionado}`);
+                else alert("Seleccione un curso primero");
+              }}
+            >
+              Siguiente
+            </button>
+
+            <button type="button" onClick={() => navigate("/lista-profesores")}>
+              Ver lista de profesores
+            </button>
+            <br />
+            <button type="button" onClick={() => navigate("/alta-profesor")}>
+              Agregar nuevo profesor
+            </button>
+          </div>
         )}
       </div>
     </div>
