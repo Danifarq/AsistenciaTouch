@@ -29,17 +29,13 @@ const Inicio = () => {
   return (
     <div className="menu-wrapper">
       <div>
-        <h1>¡Bienvenido!</h1>
-        <p>Inicia sesión para continuar</p>
-        <div style={{ marginTop: '20px' }}>
-          <button onClick={handleGoogleLogin}>
-            Inicia sesión con Google 
-          </button>
-        </div>
+        <h1>ESTO ES INICIO</h1>
+        
+        
 
         <BotonRedirigir 
-          textoBoton="¿No tenés cuenta? Regístrate" 
-          ruta="/registro" 
+          textoBoton="IR A MENU PRINCIPAL" 
+          ruta="/menuprincipal" 
         />
       </div>
     </div>
