@@ -19,11 +19,12 @@ const MenuPrincipal = () => {
     <div className="menu-wrapper">
       <div className="menu-page">
         <div className="welcome-container">
-          <h1 className="welcome-title">Bienvenido</h1>
+          
         </div>
         {userRole === 'admin' && (
           <div className="admin-container">
-            <h2>Panel de Administrador</h2>
+            <h1 className="welcome-title">Bienvenido Administrador</h1>
+            
             <button
               className="next-button"
               onClick={() => navigate('/alta-profesor')}
@@ -42,6 +43,7 @@ const MenuPrincipal = () => {
         )}
          {userRole !== 'admin' && (
           <div className="student-container">
+            <h1>Bienvenido Profe</h1>
             <h2 className="welcome-subtitle">Seleccione su curso:</h2>
             <div className="menu-principal-container">
               <label className="curso-label">CURSO:</label>
@@ -59,7 +61,8 @@ const MenuPrincipal = () => {
               </select>
             </div>
 
-            <button
+              <br />
+              <button
               className="next-button"
               onClick={() => {
                 if(cursoSeleccionado) navigate(`/curso/${cursoSeleccionado}`);
@@ -67,14 +70,6 @@ const MenuPrincipal = () => {
               }}
             >
               Siguiente
-            </button>
-
-            <button type="button" onClick={() => navigate("/lista-profesores")}>
-              Ver lista de profesores
-            </button>
-            <br />
-            <button type="button" onClick={() => navigate("/alta-profesor")}>
-              Agregar nuevo profesor
             </button>
           </div>
         )}
