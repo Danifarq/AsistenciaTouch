@@ -25,12 +25,19 @@ const MenuPrincipal = () => {
           <div className="admin-container">
             <h1 className="welcome-title">Bienvenido Administrador</h1>
             
-            <button
-              className="next-button"
-              onClick={() => navigate('/alta-profesor')}
-            >
-              Dar de Alta un Profesor
-            </button>
+             <button
+  type="button"
+  onClick={() => {
+    if (userRole === "admin") {
+      navigate("/alta-profesor");
+    } else {
+      alert("⚠️ No tenés permisos para acceder a esta sección");
+    }
+  }}
+>
+  Agregar nuevo profesor
+</button>
+
             <h3>Lista de Profesores</h3>
             <ul className="user-list">
               {profesores.map(profesor => (
