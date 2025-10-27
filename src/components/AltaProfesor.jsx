@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth"; 
 import { useProfesores } from "../hooks/useProfesores";
-
+import BotonRedirigir from '../components/BotonRedirigir';
 const AltaProfesor = () => {
   const [nombre, setNombre] = useState("");
   const [materia, setMateria] = useState("");
@@ -103,9 +103,15 @@ const AltaProfesor = () => {
           onChange={(e) => setEmail(e.target.value)}
         />
         <button type="submit">Guardar</button>
+        <div >
+                 <BotonRedirigir 
+                    textoBoton="IR A PANEL ADMIN" 
+                    ruta="/menuprincipal" 
+                /></div>
       </form>
       {mensaje && <p>{mensaje}</p>}
     </div>
+    
   );
 };
 

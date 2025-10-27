@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth"; 
 import { useProfesoresList } from "../hooks/useProfesoresList"; 
 import "../index.css";
-
+import BotonRedirigir from '../components/BotonRedirigir';
 const MenuPrincipal = () => {
   const navigate = useNavigate();
   const [cursoSeleccionado, setCursoSeleccionado] = useState("");
@@ -25,18 +25,17 @@ const MenuPrincipal = () => {
           <div className="admin-container">
             <h1 className="welcome-title">Bienvenido Administrador</h1>
             
-             <button
-  type="button"
-  onClick={() => {
-    if (userRole === "admin") {
-      navigate("/alta-profesor");
-    } else {
-      alert("⚠️ No tenés permisos para acceder a esta sección");
-    }
-  }}
->
-  Agregar nuevo profesor
-</button>
+<div>
+       <BotonRedirigir 
+                    textoBoton="Agregar un nuevo profesor" 
+                    ruta="/alta-profesor"
+                />
+   </div>
+ <div >
+                 <BotonRedirigir 
+                    textoBoton="Eliminar un profe" 
+                    ruta="/menuprincipal" 
+                /></div>
 
             <h3>Lista de Profesores</h3>
             <ul className="user-list">
