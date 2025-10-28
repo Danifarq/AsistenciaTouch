@@ -137,7 +137,7 @@ const MenuPrincipal = () => {
         {userRole === "admin" ? (
           <div className="admin-container">
             <h1 className="welcome-title">Bienvenido Administrador</h1>
-
+ <h2>Gestión de Profesores</h2>
             <div style={{ marginBottom: 8 }}>
               <BotonRedirigir textoBoton="Agregar un nuevo profesor" ruta="/alta-profesor" />
             </div>
