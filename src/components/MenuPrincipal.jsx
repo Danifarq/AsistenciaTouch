@@ -144,6 +144,13 @@ const MenuPrincipal = () => {
             <div style={{ marginBottom: 8 }}>
               <BotonRedirigir textoBoton="Eliminar un profe" ruta="/baja-profesor" />
             </div>
+            <h2>Gestión de Materias</h2>
+            <div style={{ marginBottom: 8 }}>
+              <BotonRedirigir textoBoton="Agregar Materia" ruta="/alta-materia" />
+            </div>
+            <div style={{ marginBottom: 8 }}>
+              <BotonRedirigir textoBoton="Eliminar Materia" ruta="/baja-materia" />
+            </div>
 
             <h3>Lista de Profesores</h3>
             <ul className="user-list">

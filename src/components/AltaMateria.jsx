@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { crearMateria } from "../hooks/useMaterias";
 import { useNavigate } from "react-router-dom";
-
+import BotonRedirigir from '../components/BotonRedirigir';
 const AltaMateria = () => {
   const [nombre, setNombre] = useState("");
   const [mensaje, setMensaje] = useState("");
@@ -32,8 +32,9 @@ const AltaMateria = () => {
         <button type="submit">Crear Materia</button>
       </form>
       {mensaje && <p>{mensaje}</p>}
-      <button onClick={() => navigate("/menu")}>Volver al menú</button>
-    </div>
+    <div style={{ marginBottom: 8 }}>
+              <BotonRedirigir textoBoton="ir a Panel Admin" ruta="/menuprincipal" /></div>
+              </div>
   );
 };
 
