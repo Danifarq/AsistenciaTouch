@@ -252,6 +252,9 @@ Algunos commits del equipo se hicieron para arreglar merge conflicts que surgier
 
 **-Commit:** Borrando diseño 1 png  
 
+28/10/2025
+**-Commit:** Agregando las pantallas finales
+
 **Registro de Pushes Santi G**
 
 31/08/2025 
