@@ -278,4 +278,9 @@ Algunos commits del equipo se hicieron para arreglar merge conflicts que surgier
 **-Commit:** cambios en las presentaciones de los integrantes e roles 
 
 **-Commit:** Historial de commits Santi G 
-13/10/2025
+
+23/10/2025
+**-Commit:** commits de mateo
+**-Commit:** El historial de commits bauti
+28/10/2025
+**-Commit:** commits de daniela 
