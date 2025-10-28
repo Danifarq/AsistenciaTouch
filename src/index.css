@@ -213,5 +213,101 @@ body {
   align-items: center;
 }
 
+.custom-admin-card { max-width:600px; border-radius:30px; }
+.large-admin{ font-size:3.5rem; }
+.btn-group{ display:flex; flex-direction:column; gap:20px; width:100%; }
+.btn-group button{ width:100%; border-radius:50px; }
+.lista-title{ font-size:1.8rem; margin-top:40px; }
+.user-list li{ font-size:1.5rem; margin-top:10px; }
+
+/* --- AJUSTE PARA FORMULARIO DE REGISTRO --- */
+
+/* Contenedor del formulario dentro del cuadro blanco */
+.menu-wrapper form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Alinea todo a la izquierda */
+}
+
+/* Filas del formulario */
+.form-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* ✅ Evita centrado */
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* Etiquetas alineadas a la izquierda */
+.form-row label {
+  width: 220px; /* Mantiene proporción bonita */
+  text-align: left; /* ✅ Alinea texto a la izquierda */
+  font-size: 2rem;
+  color: #2c6d6a;
+  font-weight: bold;
+  margin-right: 15px;
+}
+
+/* Inputs alineados correctamente */
+.form-row input {
+  margin: 0;
+  text-align: left; /* ✅ Evita centrado del texto */
+  width: 250px;
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: none;
+  background-color: #2c6d6a;
+  color: white;
+  font-weight: bold;
+}
+
+/* Botón centrado como en el diseño */
+button {
+  display: block;
+  margin: 30px auto 0 auto;
+}
+
+/* Ajuste del botón de redirección */
+.boton-redirigir {
+  display: block;
+  text-align: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.subtitulo-materias {
+  font-size: 2rem;
+  color: #2c6d6a;
+  font-weight: bold;
+  margin: 20px 0 10px 0;
+  text-align: left;
+}
+
+.materia-curso-container {
+  display: flex;
+  gap: 20px;
+  justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.materia-input,
+.curso-input {
+  background-color: #2c6d6a;
+  color: white;
+  font-size: 1.5rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  font-weight: bold;
+  text-align: center;
+  width: 200px;
+}
+
+.botones-materias {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
 
 

@@ -97,61 +97,6 @@ Algunos commits del equipo se hicieron para arreglar merge conflicts que surgier
 
 **-Commit:** Agregando la ruta a MenuPrincipal 
 
-09/09/2025
-**-Commit:** Agregando collection Materias
-
-11/09/2025
-**-Commit:** Agregar la comprobacion de datos
-
-16/09/2025
-
-**-Commit:** Agregado el Iniciar secion con Google
-**-Commit:** Acomodando Login e Inicio como deberian ser
-**-Commit:** Agregando lo necesario para crear la coleccion de Usuarios en FB
-**-Commit:** Agregado useProfesoresList y logica para que el Admin tenga la colleccion en Lista
-**-Commit:** Actualizando Rol por defecto a Usuario
-28/10/2025
-
-**-Commit:**Agregando texto de Gestión de profesores en PanelAdmin
-**-Commit:**Agregando al PanelAdmin los botones redirigir de AltaCurso y BajaCurso
-**-Commit:**Agregando los permisos en Approute de los nuevos archivos
-**-Commit:**Agregando lógica en los archivos de Alta y Baja de cursos
-**-Commit:**Agregando los ganchos de useCursos.jsx
-**-Commit:**Agregando los componentes AltaCurso y BajaCurso
-**-Commit:**Agregando los botones redirigir en los archivos nuevos y permisos
-**-Commit:**Agregando lógicas en useMaterias y en AltaMateria
-**-Commit:**Creado el componente BajaMateria
-**-Commit:**Creado el componente AltaMateria
-**-Commit:**Agregando las colecciones de materias y cursos para la asistencia diaria.
-**-Commit:**Agregando la opción de agregar materia y curso en registro
-**-Commit:**Agregando rutas y lógica para el botón de eliminar profesor
-**-Commit:**Agregando BotonRedirigir a la pantalla de DetalleProfesor.jsx
-
-27/10/2025
-
-**-Commit:**Agregando el botón de Eliminar profesor solo para el rol administrador
-**-Commit:**Corriendo el acceso de Alta Profesor solo para el rol administrador
-**-Commit:**Acomadando botones y textos según rol de usuario
-**-Commit:**Modificando la pantalla de inicio
-
-23/10/2025
-
-**-Commit:**Arreglando lógica entre los ganchos y los componentes
-**-Commit:**Arreglando errores en usuario administrador
-**-Commit:**Agregando botones faltantes para mejorar la navegación entre pantallas
-**-Commit:**Corrigiendo errores en Approute.jsx
-**-Commit:**Agregando a AltaProfesor.jsx, useNavigate para cargar los profes agregados
-**-Commit:**Agregando a Approute.jsx nuevos componentes y protecciones de rutas a los mismos
-**-Commit:**Agregando lógica en DetalleProfesor.jsx
-**-Commit:**Agregando componente de DetalleProfesor.jsx
-**-Commit:**Agregando lógica en ListaProfesores.jsx
-**-Commit:**Creado el componente de Listaprofesores.jsx
-**-Commit:**Agregando contenido en AltaProfesor
-**-Commit:**Corrigiendo errores en ProtecciónRutas
-**-Commit:**Organizando las protecciones
-**-Commit:**Creado el archivo de Protección de rutas
-
-
   **Historial de Push Bautista Perez**  
 12/06/2025 
 
@@ -252,9 +197,6 @@ Algunos commits del equipo se hicieron para arreglar merge conflicts que surgier
 
 **-Commit:** Borrando diseño 1 png  
 
-28/10/2025
-**-Commit:** Agregando las pantallas finales
-
 **Registro de Pushes Santi G**
 
 31/08/2025 
@@ -278,9 +220,4 @@ Algunos commits del equipo se hicieron para arreglar merge conflicts que surgier
 **-Commit:** cambios en las presentaciones de los integrantes e roles 
 
 **-Commit:** Historial de commits Santi G 
-
-23/10/2025
-**-Commit:** commits de mateo
-**-Commit:** El historial de commits bauti
-28/10/2025
-**-Commit:** commits de daniela 
+13/10/2025

@@ -7,7 +7,6 @@ const ListaProfesores = () => {
   const navigate = useNavigate();
 
   if (cargando) return <p>Cargando lista...</p>;
-
   if (profesores.length === 0)
     return (
       <div>
@@ -23,23 +22,10 @@ const ListaProfesores = () => {
       <h2>Lista de Profesores</h2>
       <ul>
         {profesores.map((prof) => (
-          <li key={prof.id} className="profesor-item">
+          <li key={prof.id}>
             <Link to={`/profesor/${prof.id}`}>
-              <strong>{prof.nombre}</strong>
-              {prof.apellido && ` ${prof.apellido}`}
+              {prof.nombre} — {prof.materia}
             </Link>
-
-            {prof.materias && prof.materias.length > 0 ? (
-              <ul className="materias-lista">
-                {prof.materias.map((m, i) => (
-                  <li key={i}>
-                    {m.materia} — <em>{m.curso}</em>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="sin-materias">No tiene materias registradas</p>
-            )}
           </li>
         ))}
       </ul>

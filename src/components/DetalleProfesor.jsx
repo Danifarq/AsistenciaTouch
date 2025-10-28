@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../firebase/firebase";
 import { doc, getDoc } from "firebase/firestore";
-import BotonRedirigir from '../components/BotonRedirigir';
 
 const DetalleProfesor = () => {
   const { id } = useParams();
@@ -30,12 +29,7 @@ const DetalleProfesor = () => {
       <p><strong>Nombre:</strong> {profesor.nombre}</p>
       <p><strong>Materia:</strong> {profesor.materia}</p>
       <p><strong>Email:</strong> {profesor.email}</p>
-       <BotonRedirigir 
-                    textoBoton="IR A PANEL ADMIN" 
-                    ruta="/menuprincipal" 
-                />
     </div>
-   
   );
 };
 
