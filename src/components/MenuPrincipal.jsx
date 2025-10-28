@@ -34,7 +34,7 @@ const MenuPrincipal = () => {
  <div >
                  <BotonRedirigir 
                     textoBoton="Eliminar un profe" 
-                    ruta="/menuprincipal" 
+                    ruta="/baja-profesor" 
                 /></div>
 
             <h3>Lista de Profesores</h3>

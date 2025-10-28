@@ -9,6 +9,7 @@ import AltaProfesor from '../../components/AltaProfesor';
 import ProteccionRutas from "../../components/ProteccionRutas.jsx";
 import ListaProfesores from "../../components/ListaProfesores";
 import DetalleProfesor from "../../components/DetalleProfesor";
+import BajaProfesor from "../../components/BajaProfesor";
 
 const Approute = () => {
  return (
@@ -26,6 +27,8 @@ const Approute = () => {
       <Route path="/profesor/:id"element={<ProteccionRutas><DetalleProfesor /></ProteccionRutas>}/>
       //*Ejemplo de rutas protegidas por roles
       <Route path="/alta-profesor" element={<ProteccionRutas roleRequired="admin"><AltaProfesor /></ProteccionRutas>} />
+      <Route path="/baja-profesor" element={<ProteccionRutas roleRequired="admin"><BajaProfesor/></ProteccionRutas>} />
+
       //* En caso de que se intente acceder a una ruta inexistente, redirigir al inicio
       <Route path="*" element={<Navigate to="/inicio" />} />
     </Routes>
