@@ -1,3 +1,28 @@
+// ProfeMenu.jsx
+/**
+ * 📘 Componente: ProfeMenu
+ *
+ * Descripción:
+ * Este componente representa la **pantalla principal del profesor**.
+ * Permite **registrar asistencia** seleccionando:
+ * - Curso
+ * - Materia
+ *
+ * Props recibidas:
+ * - cursos: lista de cursos disponibles.
+ * - materias: lista de materias disponibles.
+ * - cursoSeleccionado, setCursoSeleccionado: controlan el curso actual.
+ * - materiaSeleccionada, setMateriaSeleccionada: controlan la materia actual.
+ * - guardarAsistencia: función que guarda la asistencia del profesor en Firestore.
+ *
+ * Flujo general:
+ * 1️⃣ El profesor selecciona su curso y materia.
+ * 2️⃣ Al hacer clic en “Confirmar Asistencia”, se llama guardarAsistencia().
+ *
+ * Ubicación en el proyecto:
+ * Se muestra dentro de `MenuPrincipal.jsx` cuando el usuario tiene rol `"profesor"`.
+ */
+
 import React from "react";
 
 const ProfeMenu = ({

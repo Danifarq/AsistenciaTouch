@@ -1,3 +1,31 @@
+// PreceptorMenu.jsx
+/**
+ * 📘 Componente: PreceptorMenu
+ * 
+ * Descripción:
+ * Este componente representa la **pantalla principal del preceptor**.
+ * Permite registrar **ausencias de profesores**, seleccionando:
+ * - Profesor
+ * - Curso
+ * - Materia
+ *
+ * Props recibidas:
+ * - profesores: lista de profesores disponibles (desde Firestore).
+ * - cursos: lista de cursos disponibles.
+ * - materias: lista de materias disponibles.
+ * - cursoSeleccionado, setCursoSeleccionado: controlan el curso actual.
+ * - materiaSeleccionada, setMateriaSeleccionada: controlan la materia actual.
+ * - profesorSeleccionado, setProfesorSeleccionado: controlan el profesor elegido.
+ * - registrarAusencia: función que guarda la ausencia en Firestore.
+ *
+ * Flujo general:
+ * 1️⃣ El preceptor selecciona profesor, curso y materia.
+ * 2️⃣ Al presionar "Confirmar ausencia", se ejecuta registrarAusencia().
+ *
+ * Ubicación en el proyecto:
+ * Este componente se carga dentro de `MenuPrincipal.jsx` cuando el usuario logueado tiene rol `"preceptor"`.
+ */
+
 import React from "react";
 
 const PreceptorMenu = ({

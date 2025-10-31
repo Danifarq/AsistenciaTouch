@@ -1,3 +1,32 @@
+// ProteccionRutas.jsx
+/**
+ * 📘 Componente: ProteccionRutas
+ *
+ * Descripción:
+ * Este componente actúa como **guardia de rutas protegidas**.
+ * Solo permite acceder a ciertas páginas si el usuario:
+ * - Está autenticado.
+ * - Tiene el rol correcto (si la ruta lo requiere).
+ *
+ * Props recibidas:
+ * - children: componente interno que se muestra si el acceso está permitido.
+ * - roleRequired: (opcional) rol necesario para acceder (ej: 'admin', 'preceptor').
+ *
+ * Hooks utilizados:
+ * - useAuth(): obtiene el usuario actual, su rol y estado de carga.
+ * - useNavigate(): redirige si no cumple condiciones.
+ *
+ * Flujo general:
+ * 1️⃣ Si el usuario no está logueado → muestra mensaje y redirige al Login.
+ * 2️⃣ Si está logueado pero no tiene permisos → redirige a Inicio.
+ * 3️⃣ Si todo está OK → muestra el contenido (children).
+ *
+ * Ejemplo de uso:
+ * <ProteccionRutas roleRequired="admin">
+ *    <PanelAdmin />
+ * </ProteccionRutas>
+ */
+
 import React, { useEffect, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";

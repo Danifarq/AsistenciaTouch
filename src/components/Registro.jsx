@@ -1,3 +1,41 @@
+// Registro.jsx
+/**
+ * 📘 Componente: Registro
+ *
+ * Descripción:
+ * Pantalla de **registro de nuevos usuarios** del sistema.
+ * Permite crear cuentas de tipo:
+ * - Profesor
+ * - Preceptor
+ *
+ * Funcionalidades:
+ * - Crea usuario en Firebase Authentication (con `crearUsuario`).
+ * - Guarda los datos del usuario en Firestore según su rol:
+ *   → En "profesores" si es profesor.
+ *   → En "preceptores" si es preceptor.
+ * - Muestra mensajes de error o éxito.
+ *
+ * Estado interno:
+ * - nombre, apellido, email, contrasenia: datos del usuario.
+ * - rol: tipo de usuario.
+ * - materias: array de objetos { materia, curso } (solo si el rol es profesor).
+ * - error, exito: feedback visual.
+ *
+ * Flujo general:
+ * 1️⃣ El usuario completa el formulario.
+ * 2️⃣ Se valida y se envía la información.
+ * 3️⃣ Se crea la cuenta en Firebase y se agrega a Firestore.
+ * 4️⃣ Se redirige a la página principal tras registrarse.
+ *
+ * Hooks usados:
+ * - useNavigate: para redirigir después del registro.
+ * - useState: para manejar el estado de los campos del formulario.
+ *
+ * Notas para desarrolladores:
+ * - Este componente usa el hook `crearUsuario` (definido en `useUsuarios.js`).
+ * - Si se agrega un nuevo rol (por ejemplo, "admin"), se debe extender la lógica del `handleSubmit`.
+ */
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import BotonRedirigir from "../components/BotonRedirigir";
