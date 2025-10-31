@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 import { db } from "../firebase/firebase";
 import { collection, addDoc } from "firebase/firestore";
-import '../css/AdminMenu.css';
-import BotonRedirigir from "../components/BotonRedirigir";
 
+import BotonRedirigir from "../components/BotonRedirigir";
+import "../css/AltaPreceptor.css";
 const AltaPreceptor = () => {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
   const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [exito, setExito] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    setExito("");
+
     if (!nombre || !apellido || !email) {
-      alert("Por favor completa todos los campos.");
+      setError("Por favor completa todos los campos.");
       return;
     }
 
     try {
-      // Agregar a la colección "usuarios"
       const docRef = await addDoc(collection(db, "usuarios"), {
         nombre,
         apellido,
@@ -25,7 +29,6 @@ const AltaPreceptor = () => {
         rol: "preceptor",
       });
 
-      // Agregar también a la colección "preceptores"
       await addDoc(collection(db, "preceptores"), {
         id: docRef.id,
         nombre,
@@ -33,20 +36,21 @@ const AltaPreceptor = () => {
         email,
       });
 
-      alert("Preceptor agregado correctamente.");
+      setExito("Preceptor agregado correctamente.");
       setNombre("");
       setApellido("");
       setEmail("");
     } catch (error) {
       console.error("Error agregando preceptor:", error);
-      alert("Ocurrió un error al agregar el preceptor.");
+      setError("Ocurrió un error al agregar el preceptor.");
     }
   };
 
   return (
-    <div className="admin-container">
-      <h1>Alta de Preceptor</h1>
-      <form onSubmit={handleSubmit} className="form-container">
+    <div className="registro-container">
+      <form onSubmit={handleSubmit}>
+        <h1>Alta de Preceptor</h1>
+
         <input
           type="text"
           placeholder="Nombre"
@@ -65,11 +69,18 @@ const AltaPreceptor = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button type="submit" className="btn-verde">Agregar Preceptor</button>
+
+        <button type="submit" className="btn-registrar">
+          Agregar Preceptor
+        </button>
+
+        {error && <p className="mensaje-error">{error}</p>}
+        {exito && <p className="mensaje-exito">{exito}</p>}
+
+        <div className="volver-panel">
+          <BotonRedirigir textoBoton="Ir a Panel Admin" ruta="/menuprincipal" />
+        </div>
       </form>
-      <div className="volver-panel">
-        <BotonRedirigir textoBoton="ir a Panel Admin" ruta="/menuprincipal" />
-      </div>
     </div>
   );
 };
