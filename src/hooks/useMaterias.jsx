@@ -1,13 +1,27 @@
-import { collection, getDocs} from "firebase/firestore";
+import { db } from "../firebase/firebase";
+import { collection, addDoc, getDocs, deleteDoc, doc } from "firebase/firestore";
 
-const col= collection(db, "materias");
-const snap = await getDocs(col);
-const dataMaterias = snap.docs.map((doc) => ({ id: doc.id, ...doc.dataMaterias() }));
-console.log(dataMaterias);
-//-----Suscribirse a un doc -----
-function listenById (id, cd, errCb){
-    const ref = doc(BroadcastChannel, "materias", id);
-    return onSnapshot (ref,(d)=> {
-    cd (d.exist() ? {id: d.id, ...d.data()}:null);
-    }, errCb);
-}
+const MATERIAS_COLLECTION = "materias";
+
+export const crearMateria = async (nombre) => {
+  try {
+    await addDoc(collection(db, MATERIAS_COLLECTION), { nombre });
+    console.log("Materia creada con éxito");
+  } catch (error) {
+    console.error("Error al crear materia:", error);
+  }
+};
+
+export const obtenerMaterias = async () => {
+  const snapshot = await getDocs(collection(db, MATERIAS_COLLECTION));
+  return snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+};
+
+export const eliminarMateria = async (id) => {
+  try {
+    await deleteDoc(doc(db, MATERIAS_COLLECTION, id));
+    console.log("Materia eliminada");
+  } catch (error) {
+    console.error("Error al eliminar materia:", error);
+  }
+};
