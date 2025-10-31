@@ -1,3 +1,19 @@
+// ======================================================
+// GUÍA PARA NUEVOS DESARROLLADORES - BajaMateria.jsx
+// ======================================================
+//
+//  Este componente permite al administrador eliminar materias registradas.
+// Muestra la lista de materias y permite borrarlas individualmente.
+//
+// DEPENDENCIAS PRINCIPALES:
+// - React: manejo de estados y renderizado.
+// - useMaterias: funciones para obtener y eliminar materias en Firestore.
+// - React Router: navegación (`useNavigate`).
+// - BotonRedirigir: botón reutilizable para volver al panel admin.
+// - CSS: estilos específicos para la vista.
+//
+// ======================================================
+
 import React, { useEffect, useState } from "react";
 import { obtenerMaterias, eliminarMateria } from "../hooks/useMaterias";
 import { useNavigate } from "react-router-dom";
@@ -52,9 +68,7 @@ const BajaMateria = () => {
 
         {mensaje && (
           <p
-            className={
-              mensaje.includes("correctamente") ? "mensaje-exito" : "mensaje-error"
-            }
+            className={mensaje.includes("correctamente") ? "mensaje-exito" : "mensaje-error"}
           >
             {mensaje}
           </p>
