@@ -1,0 +1,88 @@
+/* Fondo de la pantalla */
+.alta-profesor-container {
+  background-image: url('../css/fondo.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Caja central del formulario */
+.alta-profesor-container form {
+  background-color: #ffffff;
+  border-radius: 25px;
+  box-shadow: 10px 10px 0px #144c4c;
+  padding: 2rem;
+  width: 420px;
+  max-width: 90%;
+  text-align: center;
+  border: 4px solid #144c4c;
+}
+
+/* Título */
+.alta-profesor-container h1 {
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  color: #144c4c;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Lista de usuarios */
+.user-list {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.user-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  border: 2px solid #144c4c;
+  border-radius: 15px;
+  margin-bottom: 8px;
+  background-color: #f9f9f9;
+  font-weight: 600;
+}
+
+/* Botón eliminar */
+.btn-rojo {
+  padding: 5px 12px;
+  border: none;
+  border-radius: 20px;
+  background-color: #c62828;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-rojo:hover {
+  background-color: #8e1c1c;
+}
+
+/* Mensajes de error */
+.mensaje-error {
+  color: red;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+/* Botón volver panel */
+.alta-profesor-container .volver-panel {
+  margin-top: 15px;
+}
+
+/* Ajuste responsive */
+@media (max-width: 500px) {
+  .alta-profesor-container form {
+    width: 100%;
+    padding: 1.5rem;
+  }
+}
