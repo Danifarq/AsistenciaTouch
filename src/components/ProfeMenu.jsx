@@ -46,9 +46,10 @@ const ProfeMenu = ({
         </div>
 
         <br />
-        <button className="profe-button" onClick={guardarAsistencia}>
-          Confirmar asistencia y continuar
-        </button>
+       <button onClick={guardarAsistencia} className="btn-confirmar">
+  Confirmar Asistencia
+</button>
+
       </div>
     </div>
   );

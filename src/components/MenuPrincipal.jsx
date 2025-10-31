@@ -83,8 +83,33 @@ const MenuPrincipal = () => {
   if (authLoading || profesoresLoading || cargandoDatos) return <div>Cargando menú...</div>;
   if (!user) return <div>Por favor, inicia sesión para acceder.</div>;
 
-  const guardarAsistencia = async () => { /* Implementar */ };
-  const registrarAusencia = async () => { /* Implementar */ };
+  const guardarAsistencia = async () => {
+  if (!cursoSeleccionado || !materiaSeleccionada) {
+    alert("Por favor, seleccioná un curso y una materia antes de confirmar la asistencia.");
+    return;
+  }
+
+  try {
+    const asistenciaRef = collection(db, "asistencias");
+
+    await addDoc(asistenciaRef, {
+      profesor: user.displayName || user.email,
+      curso: cursoSeleccionado,
+      materia: materiaSeleccionada,
+      fecha: new Date().toLocaleDateString("es-AR"),
+      hora: new Date().toLocaleTimeString("es-AR"),
+      estado: "presente"
+    });
+
+    alert("✅ Asistencia registrada correctamente");
+  } catch (error) {
+    console.error("Error al guardar asistencia:", error);
+    alert("❌ Hubo un error al registrar la asistencia.");
+  }
+};
+const registrarAusencia = async () => {
+  alert("Función de registrar ausencia todavía no implementada.");
+};
 
   return (
     <div className="menu-wrapper">
