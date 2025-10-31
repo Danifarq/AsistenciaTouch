@@ -215,57 +215,52 @@ const MenuPrincipal = () => {
           </div>
         ) : userRole === "preceptor" ? (
           // --- PRECEPTOR ---
-          <div className="profe-wrapper">
-            <div className="profe-container">
-              <h1>Bienvenido Preceptor</h1>
-              <h2 className="profe-subtitle">Registrar ausencia de profesor:</h2>
+          <div className="preceptor-page">
+    <div className="preceptor-box">
+      <h1 className="preceptor-title">Bienvenido Preceptor</h1>
+      <h2>Registrar ausencia de profesor:</h2>
 
-              <div className="profe-menu">
-                <label className="profe-label">Profesor:</label>
-                <select
-                  className="profe-select"
-                  value={profesorSeleccionado}
-                  onChange={(e) => setProfesorSeleccionado(e.target.value)}
-                >
-                  <option value="">Seleccione un profesor</option>
-                  {profesores.map((p) => (
-                    <option key={p.id} value={p.id}>
-                      {p.nombre} {p.apellido}
-                    </option>
-                  ))}
-                </select>
+      <div className="preceptor-form">
+        <select
+          value={profesorSeleccionado}
+          onChange={(e) => setProfesorSeleccionado(e.target.value)}
+        >
+          <option value="">Seleccione un profesor</option>
+          {profesores.map((p) => (
+            <option key={p.id} value={p.id}>
+              {p.nombre} {p.apellido}
+            </option>
+          ))}
+        </select>
 
-                <label className="profe-label" style={{ marginLeft: 12 }}>Curso:</label>
-                <select
-                  className="profe-select"
-                  value={cursoSeleccionado}
-                  onChange={(e) => setCursoSeleccionado(e.target.value)}
-                >
-                  <option value="">Seleccione un curso</option>
-                  {cursos.map((c) => (
-                    <option key={c.id} value={c.nombre}>{c.nombre}</option>
-                  ))}
-                </select>
+        <select
+          value={cursoSeleccionado}
+          onChange={(e) => setCursoSeleccionado(e.target.value)}
+        >
+          <option value="">Seleccione un curso</option>
+          {cursos.map((c) => (
+            <option key={c.id} value={c.nombre}>{c.nombre}</option>
+          ))}
+        </select>
 
-                <label className="profe-label" style={{ marginLeft: 12 }}>Materia:</label>
-                <select
-                  className="profe-select"
-                  value={materiaSeleccionada}
-                  onChange={(e) => setMateriaSeleccionada(e.target.value)}
-                >
-                  <option value="">Seleccione una materia</option>
-                  {materias.map((m) => (
-                    <option key={m.id} value={m.nombre}>{m.nombre}</option>
-                  ))}
-                </select>
-              </div>
+        <select
+          value={materiaSeleccionada}
+          onChange={(e) => setMateriaSeleccionada(e.target.value)}
+        >
+          <option value="">Seleccione una materia</option>
+          {materias.map((m) => (
+            <option key={m.id} value={m.nombre}>{m.nombre}</option>
+          ))}
+        </select>
+      </div>
 
-              <br />
-              <button className="profe-button" onClick={registrarAusencia}>
-                Confirmar ausencia
-              </button>
-            </div>
-          </div>
+      <br />
+      <button className="preceptor-button" onClick={registrarAusencia}>
+        Confirmar ausencia
+      </button>
+    </div>
+  </div>
+
         ) : (
           // --- PROFESOR ---
           <div className="profe-wrapper">
