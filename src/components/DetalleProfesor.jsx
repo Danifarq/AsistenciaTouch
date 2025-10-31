@@ -1,3 +1,14 @@
+// DetalleProfesor.jsx
+/**
+ * Muestra detalle completo de un profesor específico.
+ * Funcionalidades:
+ * - Obtiene datos desde Firestore mediante el ID de la URL.
+ * - Mensajes: cargando, no encontrado.
+ *
+ * Navegación:
+ * - Botón para volver al panel principal.
+ */
+
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../firebase/firebase";
