@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase/firebase.jsx';
 import BotonRedirigir from '../components/BotonRedirigir';
-import '../css/login.css';
+import '../css/Login.css';
 
 
 
