@@ -1,0 +1,79 @@
+.baja-profesor-page {
+  background-image: url('../css/fondo.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.baja-profesor-box {
+  background-color: #ffffff;
+  border-radius: 25px;
+  box-shadow: 10px 10px 0px #144c4c;
+  padding: 2rem 3rem;
+  text-align: center;
+  border: 4px solid #144c4c;
+  min-width: 400px;
+}
+
+.baja-profesor-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #144c4c;
+  text-decoration: underline;
+  margin-bottom: 1.5rem;
+}
+
+.baja-profesor-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.baja-profesor-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.8rem;
+}
+
+.profesor-nombre {
+  font-weight: bold;
+  color: #144c4c;
+  font-size: 1.1rem;
+}
+
+.baja-profesor-btn {
+  background-color: #e63946;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.baja-profesor-btn:hover {
+  background-color: #b0232f;
+  transform: scale(1.05);
+}
+
+.volver-panel {
+  margin-top: 1.2rem;
+}
+
+.volver-panel a {
+  color: #144c4c;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.volver-panel a:hover {
+  color: #0f3636;
+}

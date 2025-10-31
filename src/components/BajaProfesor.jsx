@@ -3,11 +3,13 @@ import { db } from "../firebase/firebase";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import BotonRedirigir from '../components/BotonRedirigir';
+import '../css/BajaProfesor.css';
+
+
 const BajaProfesor = () => {
   const [profesores, setProfesores] = useState([]);
   const navigate = useNavigate();
 
-  
   useEffect(() => {
     const obtenerProfesores = async () => {
       try {
@@ -21,11 +23,9 @@ const BajaProfesor = () => {
         console.error("Error al obtener profesores:", error);
       }
     };
-
     obtenerProfesores();
   }, []);
 
-  //Función para eliminar profesor
   const eliminarProfesor = async (id) => {
     const confirmar = window.confirm("¿Seguro que querés eliminar este profesor?");
     if (!confirmar) return;
@@ -36,41 +36,39 @@ const BajaProfesor = () => {
       alert("Profesor eliminado correctamente ✅");
     } catch (error) {
       console.error("Error al eliminar profesor:", error);
-      alert("Ocurrió un error al eliminar el profesor ");
+      alert("Ocurrió un error al eliminar el profesor.");
     }
   };
 
-  
   return (
-    <div className="baja-profesor-container">
-      <h2>Baja de Profesores</h2>
-      <p>Seleccioná un profesor para eliminarlo de la base de datos.</p>
+    <div className="baja-profesor-page">
+      <div className="baja-profesor-box">
+        <h1 className="baja-profesor-title">Baja de profesor</h1>
 
-      {profesores.length === 0 ? (
-        <p>No hay profesores registrados.</p>
-      ) : (
-        <div className="lista-profesores">
-          {profesores.map((prof) => (
-            <div key={prof.id} className="profesor-item">
-              <p>
-                <strong>{prof.nombre}</strong> – {prof.materia} <br />
-                <small>{prof.email}</small>
-              </p>
-              <button
-                onClick={() => eliminarProfesor(prof.id)}
-                className="btn-eliminar"
-              >
-                Eliminar
-              </button>
-            </div>
-          ))}
+        {profesores.length === 0 ? (
+          <p>No hay profesores registrados.</p>
+        ) : (
+          <ul className="baja-profesor-lista">
+            {profesores.map((prof) => (
+              <li key={prof.id} className="baja-profesor-item">
+                <span className="profesor-nombre">
+                  {prof.nombre || "Profesor sin nombre"}
+                </span>
+                <button
+                  onClick={() => eliminarProfesor(prof.id)}
+                  className="baja-profesor-btn"
+                >
+                  Eliminar
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        <div className="volver-panel">
+          <BotonRedirigir textoBoton="ir a Panel Admin" ruta="/menuprincipal" />
         </div>
-      )}
-
-     <BotonRedirigir 
-                    textoBoton="IR A PANEL ADMIN" 
-                    ruta="/menuprincipal" 
-                />
+      </div>
     </div>
   );
 };
