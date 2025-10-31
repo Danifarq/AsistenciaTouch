@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/AsistenciaTouch/static/css/main.e542f8f8.css",
-    "main.js": "/AsistenciaTouch/static/js/main.74193694.js",
-    "static/media/fondo.jpg": "/AsistenciaTouch/static/media/fondo.de38cf6b5a9cf21cdf5f.jpg",
-    "index.html": "/AsistenciaTouch/index.html",
-    "main.e542f8f8.css.map": "/AsistenciaTouch/static/css/main.e542f8f8.css.map",
-    "main.74193694.js.map": "/AsistenciaTouch/static/js/main.74193694.js.map"
+    "main.css": "/ASISTENCIA-TOUCH/static/css/main.b449efb3.css",
+    "main.js": "/ASISTENCIA-TOUCH/static/js/main.f13c34a7.js",
+    "static/media/fondo.jpg": "/ASISTENCIA-TOUCH/static/media/fondo.de38cf6b5a9cf21cdf5f.jpg",
+    "index.html": "/ASISTENCIA-TOUCH/index.html",
+    "main.b449efb3.css.map": "/ASISTENCIA-TOUCH/static/css/main.b449efb3.css.map",
+    "main.f13c34a7.js.map": "/ASISTENCIA-TOUCH/static/js/main.f13c34a7.js.map"
   },
   "entrypoints": [
-    "static/css/main.e542f8f8.css",
-    "static/js/main.74193694.js"
+    "static/css/main.b449efb3.css",
+    "static/js/main.f13c34a7.js"
   ]
 }
