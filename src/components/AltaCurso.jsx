@@ -38,3 +38,4 @@ const AltaCurso = () => {
                 /></div>
   );
 };
+export default AltaCurso;
