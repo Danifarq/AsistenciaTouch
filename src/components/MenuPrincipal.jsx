@@ -131,13 +131,14 @@ const MenuPrincipal = () => {
     }
   };
 
-  return (
+  if (userRole === "admin") {
+    return (
     <div className="menu-wrapper">
       <div className="menu-page">
         {userRole === "admin" ? (
           <div className="admin-container">
             <h1 className="welcome-title">Bienvenido Administrador</h1>
- <h2>Gestión de Profesores</h2>
+            <h2>Gestión de Profesores</h2>
             <div style={{ marginBottom: 8 }}>
               <BotonRedirigir textoBoton="Agregar un nuevo profesor" ruta="/alta-profesor" />
             </div>
@@ -209,7 +210,86 @@ const MenuPrincipal = () => {
         )}
       </div>
     </div>
-  );
-};
+    );
+  }
+ if (userRole === "profesor") {
+    return (
+      <div className="menu-wrapper">
+        <div className="menu-page">
+          <div className="student-container">
+            <h1>Bienvenido Profe</h1>
+            <h2 className="welcome-subtitle">Seleccione su curso y materia:</h2>
+            <div className="menu-principal-container">
+              <label className="curso-label">CURSO:</label>
+              <select
+                className="curso-select"
+                value={cursoSeleccionado}
+                onChange={(e) => setCursoSeleccionado(e.target.value)}
+              >
+                <option value="">Seleccione un curso</option>
+                {cursos.map((curso) => (
+                  <option key={curso.id} value={curso.nombre}>
+                    {curso.nombre}
+                  </option>
+                ))}
+              </select>
 
+              <label className="materia-label" style={{ marginLeft: 12 }}>
+                MATERIA:
+              </label>
+              <select
+                className="materia-select"
+                value={materiaSeleccionada}
+                onChange={(e) => setMateriaSeleccionada(e.target.value)}
+              >
+                <option value="">Seleccione una materia</option>
+                {materias.map((mat) => (
+                  <option key={mat.id} value={mat.nombre}>
+                    {mat.nombre}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <br />
+            <button className="next-button" onClick={guardarAsistencia}>
+              Confirmar asistencia y continuar
+            </button>
+          </div>
+        </div>
+      </div>
+    ); 
+}
+if (userRole === "preceptor") {
+    return (
+      <div className="menu-wrapper">
+        <div className="menu-page">
+          <div className="student-container">
+            <h1>Bienvenido Preceptor</h1>
+            <h2 className="welcome-subtitle">Seleccione su curso:</h2>
+            <div className="menu-principal-container">
+              <label className="curso-label">CURSO:</label>
+              <select
+                className="curso-select"
+                value={cursoSeleccionado}
+                onChange={(e) => setCursoSeleccionado(e.target.value)}
+              >
+                <option value="">Seleccione un curso</option>
+                {cursos.map((curso) => (
+                  <option key={curso.id} value={curso.nombre}>
+                    {curso.nombre}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <br />
+            <button className="next-button" onClick={guardarAsistencia}>
+              Confirmar asistencia y continuar
+            </button>
+          </div>
+        </div>
+      </div>
+    ); }
+}
 export default MenuPrincipal;
