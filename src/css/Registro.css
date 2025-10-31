@@ -1,0 +1,114 @@
+/* Fondo de la pantalla de registro */
+.registro-container {
+  background-image: url('../css/fondo.jpg'); 
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Caja central del formulario */
+.registro-container form {
+  background-color: #ffffff;
+  border-radius: 25px;
+  box-shadow: 10px 10px 0px #144c4c;
+  padding: 2rem;
+  width: 420px;
+  max-width: 90%;
+  text-align: center;
+  border: 4px solid #144c4c;
+}
+
+/* Título principal */
+.registro-container h1 {
+  margin-bottom: 1.5rem;
+  font-size: 2.5rem;
+  color: #144c4c;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* Inputs y select del formulario */
+.registro-container input,
+.registro-container select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 25px;
+  border: 3px solid #144c4c;
+  text-align: center;
+  font-weight: 600;
+  color: #144c4c;
+  font-size: 1rem;
+}
+
+/* Botones */
+.btn-registrar,
+.btn-agregar {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 25px;
+  background-color: #144c4c;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-registrar:hover,
+.btn-agregar:hover {
+  background-color: #0f3636;
+}
+
+/* Materias y cursos dinámicos */
+.materia-curso {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.materia-curso input {
+  flex: 1;
+}
+
+/* Mensajes de error y éxito */
+.mensaje-error {
+  color: red;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.mensaje-exito {
+  color: green;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+/* Botón de redirección */
+.registro-container .registrate {
+  margin-top: 15px;
+  color: #144c4c;
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Ajuste responsive */
+@media (max-width: 500px) {
+  .registro-container form {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .materia-curso {
+    flex-direction: column;
+  }
+}

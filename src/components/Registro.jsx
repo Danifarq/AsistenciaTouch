@@ -4,6 +4,7 @@ import BotonRedirigir from "../components/BotonRedirigir";
 import { crearUsuario } from "../hooks/useUsuarios";
 import { db } from "../firebase/firebase";
 import { collection, addDoc } from "firebase/firestore";
+import "../css/Registro.css"; // Asegurate de importar el CSS
 
 const Registro = () => {
   const navigate = useNavigate();
@@ -11,7 +12,7 @@ const Registro = () => {
   const [apellido, setApellido] = useState("");
   const [contrasenia, setContrasenia] = useState("");
   const [email, setEmail] = useState("");
-  const [rol, setRol] = useState("profesor"); // Selector de rol
+  const [rol, setRol] = useState("profesor");
   const [materias, setMaterias] = useState([{ materia: "", curso: "" }]);
   const [error, setError] = useState("");
   const [exito, setExito] = useState("");
@@ -32,7 +33,6 @@ const Registro = () => {
     setExito("");
 
     try {
-      // Crear usuario en Firebase Auth
       const resultado = await crearUsuario({
         usuario: email,
         contrasena: contrasenia,
@@ -61,7 +61,6 @@ const Registro = () => {
         }
 
         setExito("Usuario creado correctamente");
-        console.log("Usuario creado:", email);
 
         setTimeout(() => {
           setExito("");
@@ -86,60 +85,49 @@ const Registro = () => {
 
   return (
     <div className="registro-container">
-      <h1>Crear una cuenta</h1>
-
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Nombre:</label>
-          <input
-            type="text"
-            value={nombre}
-            onChange={(e) => setNombre(e.target.value)}
-            required
-          />
-        </div>
+        <h1>Crear una cuenta</h1>
 
-        <div>
-          <label>Apellido:</label>
-          <input
-            type="text"
-            value={apellido}
-            onChange={(e) => setApellido(e.target.value)}
-            required
-          />
-        </div>
+        <input
+          type="text"
+          placeholder="Nombre"
+          value={nombre}
+          onChange={(e) => setNombre(e.target.value)}
+          required
+        />
 
-        <div>
-          <label>Correo electrónico:</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
+        <input
+          type="text"
+          placeholder="Apellido"
+          value={apellido}
+          onChange={(e) => setApellido(e.target.value)}
+          required
+        />
 
-        <div>
-          <label>Contraseña:</label>
-          <input
-            type="password"
-            value={contrasenia}
-            onChange={(e) => setContrasenia(e.target.value)}
-            required
-          />
-        </div>
+        <input
+          type="email"
+          placeholder="Correo electrónico"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
 
-        <div>
-          <label>Seleccioná tu rol:</label>
-          <select value={rol} onChange={(e) => setRol(e.target.value)}>
-            <option value="profesor">Profesor</option>
-            <option value="preceptor">Preceptor</option>
-          </select>
-        </div>
+        <input
+          type="password"
+          placeholder="Contraseña"
+          value={contrasenia}
+          onChange={(e) => setContrasenia(e.target.value)}
+          required
+        />
+
+        <select value={rol} onChange={(e) => setRol(e.target.value)}>
+          <option value="profesor">Profesor</option>
+          <option value="preceptor">Preceptor</option>
+        </select>
 
         {rol === "profesor" && (
           <>
-            <h3>Materias y cursos que enseña</h3>
+            <h3>Materias y cursos</h3>
             {materias.map((item, index) => (
               <div key={index} className="materia-curso">
                 <input
@@ -162,8 +150,7 @@ const Registro = () => {
                 />
               </div>
             ))}
-
-            <button type="button" onClick={agregarMateria} className="btn-agregar">
+            <button type="button" className="btn-agregar" onClick={agregarMateria}>
               Agregar otra materia
             </button>
           </>
@@ -175,9 +162,9 @@ const Registro = () => {
 
         {error && <p className="mensaje-error">{error}</p>}
         {exito && <p className="mensaje-exito">{exito}</p>}
-      </form>
 
-      <BotonRedirigir textoBoton="¿Ya tenés cuenta? Iniciar Sesión" ruta="/" />
+        <BotonRedirigir textoBoton="¿Ya tenés cuenta? Iniciar Sesión" ruta="/" />
+      </form>
     </div>
   );
 };
