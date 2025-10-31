@@ -1,3 +1,18 @@
+// ======================================================
+// GUÍA PARA NUEVOS DESARROLLADORES - BajaPreceptor.jsx
+// ======================================================
+//
+//  Este componente permite eliminar preceptores.
+// Borra los registros tanto de "usuarios" como de "preceptores" en Firestore.
+//
+//  DEPENDENCIAS PRINCIPALES:
+// - React: manejo de estados y renderizado.
+// - Firebase Firestore: lectura y eliminación de documentos.
+// - BotonRedirigir: volver al panel admin.
+// - CSS: estilos visuales específicos.
+//
+// ======================================================
+
 import React, { useState, useEffect } from "react";
 import { db } from "../firebase/firebase";
 import { collection, getDocs, deleteDoc, doc, query, where } from "firebase/firestore";
