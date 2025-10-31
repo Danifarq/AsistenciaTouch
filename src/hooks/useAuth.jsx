@@ -1,4 +1,3 @@
-
 import { createContext, useContext, useEffect, useState } from "react";
 import { auth, db } from "../firebase/firebase";
 import { onAuthStateChanged } from "firebase/auth";
@@ -15,16 +14,29 @@ export function AuthProvider({ children }) {
     const unsub = onAuthStateChanged(auth, async (authUser) => {
       setUser(authUser);
       if (authUser) {
-        const userDocRef = doc(db, 'usuarios', authUser.uid);
-        const userDocSnap = await getDoc(userDocRef);
+        let userDocSnap;
+
+        // Buscar primero en usuarios
+        const userDocRef = doc(db, "usuarios", authUser.uid);
+        userDocSnap = await getDoc(userDocRef);
+
+        // Si no está en usuarios, probar en preceptores
+        if (!userDocSnap.exists()) {
+          const preceptorDocRef = doc(db, "preceptores", authUser.uid);
+          userDocSnap = await getDoc(preceptorDocRef);
+        }
+
         if (userDocSnap.exists()) {
           setUserRole(userDocSnap.data().rol);
+        } else {
+          setUserRole(null);
         }
       } else {
         setUserRole(null);
       }
       setLoading(false);
     });
+
     return () => unsub();
   }, []);
 

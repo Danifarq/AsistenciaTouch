@@ -13,6 +13,7 @@ const MenuPrincipal = () => {
   const navigate = useNavigate();
   const [cursoSeleccionado, setCursoSeleccionado] = useState("");
   const [materiaSeleccionada, setMateriaSeleccionada] = useState("");
+  const [profesorSeleccionado, setProfesorSeleccionado] = useState("");
   const [cursos, setCursos] = useState([]);
   const [materias, setMaterias] = useState([]);
   const [cargandoDatos, setCargandoDatos] = useState(true);
@@ -20,7 +21,7 @@ const MenuPrincipal = () => {
   const { user, userRole, loading: authLoading } = useAuth();
   const { profesores, loading: profesoresLoading } = useProfesoresList();
 
-  //  Cursos y materias por defecto
+  // Cursos, materias y preceptores por defecto
   const cursosDefault = [
     { nombre: "1° 1°" },
     { nombre: "1° 2°" },
@@ -37,33 +38,40 @@ const MenuPrincipal = () => {
     { nombre: "Inglés" },
   ];
 
-  // Cargar o crear las colecciones
+  const preceptoresDefault = [
+    { nombre: "Laura", apellido: "Gómez", email: "laura@escuela.edu", rol: "preceptor" },
+    { nombre: "Carlos", apellido: "Pérez", email: "carlos@escuela.edu", rol: "preceptor" },
+  ];
+
+  // Inicializar datos base (cursos, materias, preceptores)
   useEffect(() => {
     const inicializarDatos = async () => {
       try {
         // --- Cargar cursos ---
         const cursosRef = collection(db, "cursos");
         const cursosSnap = await getDocs(cursosRef);
-
         if (cursosSnap.empty) {
-          console.log("Creando colección 'cursos' con valores por defecto...");
-          for (const curso of cursosDefault) {
-            await addDoc(cursosRef, curso);
-          }
+          console.log("Creando colección 'cursos'...");
+          for (const curso of cursosDefault) await addDoc(cursosRef, curso);
         }
 
         // --- Cargar materias ---
         const materiasRef = collection(db, "materias");
         const materiasSnap = await getDocs(materiasRef);
-
         if (materiasSnap.empty) {
-          console.log("Creando colección 'materias' con valores por defecto...");
-          for (const mat of materiasDefault) {
-            await addDoc(materiasRef, mat);
-          }
+          console.log("Creando colección 'materias'...");
+          for (const mat of materiasDefault) await addDoc(materiasRef, mat);
         }
 
-        // --- Volver a leer para mostrar ---
+        // --- Cargar preceptores ---
+        const preceptoresRef = collection(db, "preceptores");
+        const preceptoresSnap = await getDocs(preceptoresRef);
+        if (preceptoresSnap.empty) {
+          console.log("Creando colección 'preceptores'...");
+          for (const prec of preceptoresDefault) await addDoc(preceptoresRef, prec);
+        }
+
+        // --- Leer datos actualizados ---
         const nuevosCursos = (await getDocs(cursosRef)).docs.map((d) => ({
           id: d.id,
           ...d.data(),
@@ -90,14 +98,16 @@ const MenuPrincipal = () => {
 
   if (!user) return <div>Por favor, inicia sesión para acceder.</div>;
 
-  // Guardar asistencia profesor + curso + materia
+  // === FUNCIONES DE ASISTENCIA ===
+
+  // Guardar asistencia del profesor
   const guardarAsistencia = async () => {
     if (!cursoSeleccionado || !materiaSeleccionada) {
       alert("Debe seleccionar un curso y una materia");
       return;
     }
 
-    const hoy = new Date().toISOString().split("T")[0]; // YYYY-MM-DD
+    const hoy = new Date().toISOString().split("T")[0];
 
     try {
       const q = query(
@@ -110,7 +120,7 @@ const MenuPrincipal = () => {
 
       const existing = await getDocs(q);
       if (!existing.empty) {
-        alert("Ya registraste asistencia hoy para esta materia y curso ");
+        alert("Ya registraste asistencia hoy para esta materia y curso.");
         navigate(`/curso/${encodeURIComponent(cursoSeleccionado)}/${encodeURIComponent(materiaSeleccionada)}`);
         return;
       }
@@ -125,7 +135,7 @@ const MenuPrincipal = () => {
         presente: true,
       });
 
-      alert("Asistencia registrada correctamente ");
+      alert("Asistencia registrada correctamente.");
       navigate(`/curso/${encodeURIComponent(cursoSeleccionado)}/${encodeURIComponent(materiaSeleccionada)}`);
     } catch (error) {
       console.error("Error al guardar asistencia:", error);
@@ -133,37 +143,64 @@ const MenuPrincipal = () => {
     }
   };
 
-    return (
+  // Guardar ausencia por preceptor
+  const registrarAusencia = async () => {
+    if (!profesorSeleccionado || !cursoSeleccionado || !materiaSeleccionada) {
+      alert("Debe completar todos los campos");
+      return;
+    }
+
+    const hoy = new Date().toISOString().split("T")[0];
+    try {
+      await addDoc(collection(db, "ausencias"), {
+        profesorId: profesorSeleccionado,
+        curso: cursoSeleccionado,
+        materia: materiaSeleccionada,
+        fecha: hoy,
+        preceptorId: user.uid,
+        preceptorNombre: user.displayName || "Preceptor",
+      });
+      alert("Ausencia registrada correctamente");
+    } catch (error) {
+      console.error("Error al registrar ausencia:", error);
+      alert("Ocurrió un error al registrar la ausencia");
+    }
+  };
+
+  // === RENDER ===
+
+  return (
     <div className="menu-wrapper">
       <div className="menu-page">
+
+        {/* --- ADMIN --- */}
         {userRole === "admin" ? (
           <div className="admin-container">
             <h1 className="welcome-title">Bienvenido Admin</h1>
 
             <div className="section">
-                <h2>Gestión de materias</h2>
-                <div className="button-row">
-                  <BotonRedirigir textoBoton="Agregar Materia" ruta="/alta-materia" className="btn-agregar-materia" />
-                  <BotonRedirigir textoBoton="Eliminar Materia" ruta="/baja-materia" className="btn-eliminar-materia" />
-                </div>
+              <h2>Gestión de materias</h2>
+              <div className="button-row">
+                <BotonRedirigir textoBoton="Agregar Materia" ruta="/alta-materia" className="btn-agregar-materia" />
+                <BotonRedirigir textoBoton="Eliminar Materia" ruta="/baja-materia" className="btn-eliminar-materia" />
               </div>
-
-           <div className="section">
-                <h2>Gestión de profesores</h2>
-                <div className="button-row">
-                  <BotonRedirigir textoBoton="Agregar profesor" ruta="/alta-profesor" className="btn-agregar-profesor" />
-                  <BotonRedirigir textoBoton="Eliminar profesor" ruta="/baja-profesor" className="btn-eliminar-profesor" />
-                </div>
-              </div>   
+            </div>
 
             <div className="section">
-                <h2>Gestión de cursos</h2>
-                <div className="button-row">
-                  <BotonRedirigir textoBoton="Agregar Curso" ruta="/alta-curso" className="btn-agregar-curso" />
-                  <BotonRedirigir textoBoton="Eliminar Curso" ruta="/baja-curso" className="btn-eliminar-curso" />
-                </div>
-              </div>  
+              <h2>Gestión de profesores</h2>
+              <div className="button-row">
+                <BotonRedirigir textoBoton="Agregar Profesor" ruta="/alta-profesor" className="btn-agregar-profesor" />
+                <BotonRedirigir textoBoton="Eliminar Profesor" ruta="/baja-profesor" className="btn-eliminar-profesor" />
+              </div>
+            </div>
 
+            <div className="section">
+              <h2>Gestión de cursos</h2>
+              <div className="button-row">
+                <BotonRedirigir textoBoton="Agregar Curso" ruta="/alta-curso" className="btn-agregar-curso" />
+                <BotonRedirigir textoBoton="Eliminar Curso" ruta="/baja-curso" className="btn-eliminar-curso" />
+              </div>
+            </div>
 
             <div className="section">
               <h3>Lista de profesores</h3>
@@ -176,52 +213,103 @@ const MenuPrincipal = () => {
               </ul>
             </div>
           </div>
-        ) : (
+        ) : userRole === "preceptor" ? (
+          // --- PRECEPTOR ---
           <div className="profe-wrapper">
-    <div className="profe-container">
-      <h1>Bienvenido Profe</h1>
-      <h2 className="profe-subtitle">Seleccione su curso y materia:</h2>
+            <div className="profe-container">
+              <h1>Bienvenido Preceptor</h1>
+              <h2 className="profe-subtitle">Registrar ausencia de profesor:</h2>
 
-      <div className="profe-menu">
-        <label className="profe-label">CURSO:</label>
-        <select
-          className="profe-select"
-          value={cursoSeleccionado}
-          onChange={(e) => setCursoSeleccionado(e.target.value)}
-        >
-          <option value="">Seleccione un curso</option>
-          {cursos.map((curso) => (
-            <option key={curso.id} value={curso.nombre}>
-              {curso.nombre}
-            </option>
-          ))}
-        </select>
+              <div className="profe-menu">
+                <label className="profe-label">Profesor:</label>
+                <select
+                  className="profe-select"
+                  value={profesorSeleccionado}
+                  onChange={(e) => setProfesorSeleccionado(e.target.value)}
+                >
+                  <option value="">Seleccione un profesor</option>
+                  {profesores.map((p) => (
+                    <option key={p.id} value={p.id}>
+                      {p.nombre} {p.apellido}
+                    </option>
+                  ))}
+                </select>
 
-        <label className="profe-label" style={{ marginLeft: 12 }}>
-          MATERIA:
-        </label>
-        <select
-          className="profe-select"
-          value={materiaSeleccionada}
-          onChange={(e) => setMateriaSeleccionada(e.target.value)}
-        >
-          <option value="">Seleccione una materia</option>
-          {materias.map((mat) => (
-            <option key={mat.id} value={mat.nombre}>
-              {mat.nombre}
-            </option>
-          ))}
-        </select>
-      </div>
+                <label className="profe-label" style={{ marginLeft: 12 }}>Curso:</label>
+                <select
+                  className="profe-select"
+                  value={cursoSeleccionado}
+                  onChange={(e) => setCursoSeleccionado(e.target.value)}
+                >
+                  <option value="">Seleccione un curso</option>
+                  {cursos.map((c) => (
+                    <option key={c.id} value={c.nombre}>{c.nombre}</option>
+                  ))}
+                </select>
 
-      <br />
-      <button className="profe-button" onClick={guardarAsistencia}>
-        Confirmar asistencia y continuar
-      </button>
-    </div>
-  </div>
-)}
+                <label className="profe-label" style={{ marginLeft: 12 }}>Materia:</label>
+                <select
+                  className="profe-select"
+                  value={materiaSeleccionada}
+                  onChange={(e) => setMateriaSeleccionada(e.target.value)}
+                >
+                  <option value="">Seleccione una materia</option>
+                  {materias.map((m) => (
+                    <option key={m.id} value={m.nombre}>{m.nombre}</option>
+                  ))}
+                </select>
+              </div>
 
+              <br />
+              <button className="profe-button" onClick={registrarAusencia}>
+                Confirmar ausencia
+              </button>
+            </div>
+          </div>
+        ) : (
+          // --- PROFESOR ---
+          <div className="profe-wrapper">
+            <div className="profe-container">
+              <h1>Bienvenido Profe</h1>
+              <h2 className="profe-subtitle">Seleccione su curso y materia:</h2>
+
+              <div className="profe-menu">
+                <label className="profe-label">CURSO:</label>
+                <select
+                  className="profe-select"
+                  value={cursoSeleccionado}
+                  onChange={(e) => setCursoSeleccionado(e.target.value)}
+                >
+                  <option value="">Seleccione un curso</option>
+                  {cursos.map((curso) => (
+                    <option key={curso.id} value={curso.nombre}>
+                      {curso.nombre}
+                    </option>
+                  ))}
+                </select>
+
+                <label className="profe-label" style={{ marginLeft: 12 }}>MATERIA:</label>
+                <select
+                  className="profe-select"
+                  value={materiaSeleccionada}
+                  onChange={(e) => setMateriaSeleccionada(e.target.value)}
+                >
+                  <option value="">Seleccione una materia</option>
+                  {materias.map((mat) => (
+                    <option key={mat.id} value={mat.nombre}>
+                      {mat.nombre}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <br />
+              <button className="profe-button" onClick={guardarAsistencia}>
+                Confirmar asistencia y continuar
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
