@@ -1,6 +1,5 @@
 import React from 'react';
-import  { Routes, Route, useNavigate, Navigate } from 'react-router-dom';
-
+import { HashRouter as Routes, Route,Navigate } from "react-router-dom";
 import Login from '../../components/Login.jsx';
 import Inicio from "../../components/Inicio";
 import Registro from "../../components/Registro";
