@@ -3,6 +3,8 @@ import { useNavigate} from 'react-router-dom';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { auth, googleProvider } from '../firebase/firebase.jsx';
 import BotonRedirigir from '../components/BotonRedirigir';
+
+
 const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
