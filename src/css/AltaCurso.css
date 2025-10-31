@@ -1,0 +1,146 @@
+/* =========================
+   FONDO GENERAL
+========================= */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #aee6e6;
+  background-image: url("../css/fondo.jpg"); /* Fondo  */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* =========================
+   CONTENEDOR PRINCIPAL
+========================= */
+.container {
+  background-color: #e5ffff;
+  width: 420px;
+  border-radius: 25px;
+  padding: 50px 40px;
+  text-align: center;
+  border: 10px solid #0b4f4f;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================
+   TÍTULO
+========================= */
+.container h1 {
+  font-size: 2.3rem;
+  color: #0b4f4f;
+  font-weight: 700;
+  margin-bottom: 35px;
+  text-decoration: underline;
+  text-transform: lowercase;
+}
+
+.container h1::first-letter {
+  text-transform: uppercase;
+}
+
+/* =========================
+   FORMULARIO
+========================= */
+.container form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================
+   INPUT DE TEXTO
+========================= */
+.container input {
+  width: 90%;
+  padding: 12px 15px;
+  border: 3px solid #0b4f4f;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  color: #0b4f4f;
+  background-color: transparent;
+  text-align: center;
+  margin-bottom: 25px;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.container input::placeholder {
+  color: #527c7c;
+  opacity: 0.8;
+  font-weight: 500;
+}
+
+.container input:focus {
+  box-shadow: 0 0 10px rgba(11, 79, 79, 0.4);
+}
+
+/* =========================
+   BOTÓN PRINCIPAL ("Guardar")
+========================= */
+.container button[type="submit"] {
+  width: 90%;
+  background-color: #0b4f4f; /* color institucional */
+  color: white;
+  border: none;
+  padding: 14px 0;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: all 0.25s ease-in-out;
+  margin-bottom: 20px;
+}
+
+.container button[type="submit"]:hover {
+  background-color: #106a6a;
+  transform: scale(1.03);
+}
+
+/* =========================
+   MENSAJE DE ALERTA / ÉXITO
+========================= */
+.container p {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #0b4f4f;
+}
+
+/* =========================
+   BOTÓN REDIRIGIR / LINK
+========================= */
+.container a {
+  display: inline-block;
+  color: #0b4f4f;
+  font-weight: 600;
+  text-decoration: underline;
+  font-size: 1rem;
+  background: none;
+  border: none;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.container a:hover {
+  color: #106a6a;
+}
+
+/* =========================
+   RESPONSIVE (MÓVIL)
+========================= */
+@media (max-width: 480px) {
+  .container {
+    width: 85%;
+    padding: 35px 20px;
+  }
+
+  .container h1 {
+    font-size: 1.9rem;
+  }
+}
