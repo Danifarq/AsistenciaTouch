@@ -1,28 +1,35 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import BotonRedirigir from "../components/BotonRedirigir";
 import { db } from "../firebase/firebase";
 import { doc, updateDoc } from "firebase/firestore";
 import '../css/AdminMenu.css';
 
-const AdminMenu = ({ profesores }) => {
-  const [roles, setRoles] = useState(
-    profesores.reduce((acc, prof) => {
-      acc[prof.id] = prof.rol || "profe";
-      return acc;
-    }, {})
-  );
+const AdminMenu = ({ usuarios = [] }) => {
+  const [roles, setRoles] = useState({});
 
-  const handleRoleChange = (profId, nuevoRol) => {
-    setRoles((prev) => ({ ...prev, [profId]: nuevoRol }));
+  // Inicializa roles cuando llegan los usuarios
+  useEffect(() => {
+    if (!usuarios || usuarios.length === 0) return;
+
+    const initialRoles = usuarios.reduce((acc, user) => {
+      acc[user.id] = user.rol || "profe";
+      return acc;
+    }, {});
+
+    setRoles(initialRoles);
+  }, [usuarios]);
+
+  const handleRoleChange = (userId, nuevoRol) => {
+    setRoles((prev) => ({ ...prev, [userId]: nuevoRol }));
   };
 
   const guardarRoles = async () => {
     try {
-      for (const prof of profesores) {
-        const nuevoRol = roles[prof.id];
-        if (nuevoRol !== prof.rol) {
-          const profRef = doc(db, "usuarios", prof.id);
-          await updateDoc(profRef, { rol: nuevoRol });
+      for (const user of usuarios) {
+        const nuevoRol = roles[user.id];
+        if (nuevoRol !== user.rol) {
+          const userRef = doc(db, "usuarios", user.id);
+          await updateDoc(userRef, { rol: nuevoRol });
         }
       }
       alert("Roles actualizados correctamente.");
@@ -45,7 +52,7 @@ const AdminMenu = ({ profesores }) => {
         </div>
       </div>
 
-      {/* Gestión de Profesores */}
+      {/* Gestión de Profesores y Preceptores */}
       <div className="section">
         <h2>Gestión de profesores y preceptores</h2>
         <div className="button-row">
@@ -65,19 +72,19 @@ const AdminMenu = ({ profesores }) => {
         </div>
       </div>
 
-      {/* Lista de Profesores/Preceptores */}
+      {/* Lista de Usuarios y Roles */}
       <div className="section">
-        <h3>Lista de profesores y roles</h3>
+        <h3>Lista de usuarios y roles</h3>
         <ul className="user-list">
-          {profesores.map((profesor) => (
-            <li key={profesor.id} style={{ marginBottom: 8 }}>
-              {profesor.nombre} {profesor.apellido} ({profesor.email}) 
+          {usuarios.map((user) => (
+            <li key={user.id} style={{ marginBottom: 8 }}>
+              {user.nombre} {user.apellido} ({user.email})
               <select
-                value={roles[profesor.id]}
-                onChange={(e) => handleRoleChange(profesor.id, e.target.value)}
+                value={roles[user.id] || "profesor"}
+                onChange={(e) => handleRoleChange(user.id, e.target.value)}
                 style={{ marginLeft: 8 }}
               >
-                <option value="profe">Profesor</option>
+                <option value="profesor">Profesor</option>
                 <option value="preceptor">Preceptor</option>
                 <option value="admin">Admin</option>
               </select>
