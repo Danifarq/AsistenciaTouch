@@ -1,12 +1,12 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+
 import Login from '../../components/Login.jsx';
-import Inicio from "../../components/Inicio";
 import Registro from "../../components/Registro";
+import Inicio from "../../components/Inicio";
 import MenuPrincipal from '../../components/MenuPrincipal';
 import AltaProfesor from '../../components/AltaProfesor';
 import BajaProfesor from '../../components/BajaProfesor.jsx';
-import ProteccionRutas from "../../components/ProteccionRutas.jsx";
 import ListaProfesores from "../../components/ListaProfesores";
 import DetalleProfesor from "../../components/DetalleProfesor";
 import AltaMateria from '../../components/AltaMateria.jsx';
@@ -15,6 +15,7 @@ import AltaCurso from '../../components/AltaCurso.jsx';
 import BajaCurso from '../../components/BajaCurso.jsx';
 import AltaPreceptor from '../../components/AltaPreceptor.jsx';
 import BajaPreceptor from '../../components/BajaPreceptor.jsx';
+import ProteccionRutas from "../../components/ProteccionRutas.jsx";
 
 const Approute = () => {
   return (
