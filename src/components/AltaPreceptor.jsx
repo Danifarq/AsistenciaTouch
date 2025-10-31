@@ -3,6 +3,7 @@ import { db } from "../firebase/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import '../css/AdminMenu.css';
 import BotonRedirigir from "../components/BotonRedirigir";
+
 const AltaPreceptor = () => {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
@@ -16,12 +17,22 @@ const AltaPreceptor = () => {
     }
 
     try {
-      await addDoc(collection(db, "usuarios"), {
+      // Agregar a la colección "usuarios"
+      const docRef = await addDoc(collection(db, "usuarios"), {
         nombre,
         apellido,
         email,
         rol: "preceptor",
       });
+
+      // Agregar también a la colección "preceptores"
+      await addDoc(collection(db, "preceptores"), {
+        id: docRef.id,
+        nombre,
+        apellido,
+        email,
+      });
+
       alert("Preceptor agregado correctamente.");
       setNombre("");
       setApellido("");
@@ -57,8 +68,8 @@ const AltaPreceptor = () => {
         <button type="submit" className="btn-verde">Agregar Preceptor</button>
       </form>
       <div className="volver-panel">
-          <BotonRedirigir textoBoton="ir a Panel Admin" ruta="/menuprincipal" />
-        </div>
+        <BotonRedirigir textoBoton="ir a Panel Admin" ruta="/menuprincipal" />
+      </div>
     </div>
   );
 };
