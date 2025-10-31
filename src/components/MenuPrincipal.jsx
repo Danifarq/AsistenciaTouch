@@ -6,6 +6,7 @@ import { db } from "../firebase/firebase";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import "../index.css";
 import BotonRedirigir from "../components/BotonRedirigir";
+import '../css/MenuPrincipal.css';
 
 const MenuPrincipal = () => {
   const navigate = useNavigate();
@@ -131,38 +132,48 @@ const MenuPrincipal = () => {
     }
   };
 
-  return (
+    return (
     <div className="menu-wrapper">
       <div className="menu-page">
         {userRole === "admin" ? (
           <div className="admin-container">
-            <h1 className="welcome-title">Bienvenido Administrador</h1>
- <h2>Gestión de Profesores</h2>
-            <div style={{ marginBottom: 8 }}>
-              <BotonRedirigir textoBoton="Agregar un nuevo profesor" ruta="/alta-profesor" />
-            </div>
-            <div style={{ marginBottom: 8 }}>
-              <BotonRedirigir textoBoton="Eliminar un profe" ruta="/baja-profesor" />
-            </div>
-            <h2>Gestión de Materias</h2>
-            <div style={{ marginBottom: 8 }}>
-              <BotonRedirigir textoBoton="Agregar Materia" ruta="/alta-materia" />
-            </div>
-            <div style={{ marginBottom: 8 }}>
-              <BotonRedirigir textoBoton="Eliminar Materia" ruta="/baja-materia" />
-            </div>
-            <h2>Gestión de Cursos</h2>
-               <BotonRedirigir textoBoton="Agregar Curso" ruta="/alta-curso"/>
-               <BotonRedirigir textoBoton="Eliminar Curso" ruta="/baja-curso"/>
+            <h1 className="welcome-title">Bienvenido Admin</h1>
 
-            <h3>Lista de Profesores</h3>
-            <ul className="user-list">
-              {profesores.map((profesor) => (
-                <li key={profesor.id}>
-                  {profesor.nombre} {profesor.apellido} ({profesor.email})
-                </li>
-              ))}
-            </ul>
+            <div className="section">
+                <h2>Gestión de materias</h2>
+                <div className="button-row">
+                  <BotonRedirigir textoBoton="Agregar Materia" ruta="/alta-materia" className="btn-agregar-materia" />
+                  <BotonRedirigir textoBoton="Eliminar Materia" ruta="/baja-materia" className="btn-eliminar-materia" />
+                </div>
+              </div>
+
+           <div className="section">
+                <h2>Gestión de profesores</h2>
+                <div className="button-row">
+                  <BotonRedirigir textoBoton="Agregar profesor" ruta="/alta-profesor" className="btn-agregar-profesor" />
+                  <BotonRedirigir textoBoton="Eliminar profesor" ruta="/baja-profesor" className="btn-eliminar-profesor" />
+                </div>
+              </div>   
+
+            <div className="section">
+                <h2>Gestión de cursos</h2>
+                <div className="button-row">
+                  <BotonRedirigir textoBoton="Agregar Curso" ruta="/alta-curso" className="btn-agregar-curso" />
+                  <BotonRedirigir textoBoton="Eliminar Curso" ruta="/baja-curso" className="btn-eliminar-curso" />
+                </div>
+              </div>  
+
+
+            <div className="section">
+              <h3>Lista de profesores</h3>
+              <ul className="user-list">
+                {profesores.map((profesor) => (
+                  <li key={profesor.id}>
+                    {profesor.nombre} {profesor.apellido} ({profesor.email})
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         ) : (
           <div className="student-container">

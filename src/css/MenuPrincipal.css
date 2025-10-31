@@ -1,0 +1,125 @@
+/* ======== FONDO GENERAL ======== */
+body {
+  background-image: url("../css/fondo.jpg"); /* 👈 ubicá tu fondo aquí */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ======== MARCO PRINCIPAL ======== */
+.menu-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.menu-page {
+  background-color: white;
+  border: 10px solid #136b63; /* 👈 verde del marco */
+  border-radius: 30px;
+  padding: 35px 70px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+}
+
+/* ======== ESTILOS ADMIN ======== */
+.admin-container {
+  text-align: center;
+  color: #004d4d;
+}
+
+.welcome-title {
+  font-size: 42px;
+  font-weight: bold;
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+
+.section {
+  margin-bottom: 10px;
+}
+
+.section h2 {
+  font-size: 22px;
+  margin-bottom: 2px; /* 👈 casi pegado a los botones */
+  text-decoration: underline;
+  color: #006666;
+}
+
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 5px;
+}
+
+/* ======== BOTONES ======== */
+.btn-agregar-materia,
+.btn-agregar-profesor,
+.btn-agregar-curso {
+  background-color: #3cb371;
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 30px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-eliminar-materia,
+.btn-eliminar-profesor,
+.btn-eliminar-curso {
+  background-color: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 14px 40px;
+  border-radius: 30px;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.btn-agregar-materia:hover,
+.btn-agregar-profesor:hover,
+.btn-agregar-curso:hover {
+  background-color: #2fae5e;
+  transform: scale(1.05);
+}
+
+.btn-eliminar-materia:hover,
+.btn-eliminar-profesor:hover,
+.btn-eliminar-curso:hover {
+  background-color: #e64444;
+  transform: scale(1.05);
+}
+
+/* ======== LISTA ======== */
+.section h3 {
+  font-size: 20px;
+  text-decoration: underline;
+  color: #006666;
+  margin-top: 12px;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-image: url("../css/fondo.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat;
+}
+
+.menu-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
