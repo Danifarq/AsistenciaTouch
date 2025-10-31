@@ -29,9 +29,9 @@ const Inicio = () => {
   return (
     <div className="menu-wrapper">
       <div>
-        <h1>Bienvenido profesor/a</h1>
+        <h1>ESTO ES INICIO/asistencia</h1>
         
-        <p>SU ASISTENCIA HA SIDO CONFIRMADA</p>
+        <p>ASISTENCIA CONFIRMADA</p>
 
         <BotonRedirigir 
           textoBoton="IR A MENU PRINCIPAL" 
