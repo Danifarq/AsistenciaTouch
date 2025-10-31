@@ -1,3 +1,18 @@
+// ======================================================
+//  GUÍA PARA NUEVOS DESARROLLADORES - BajaProfesor.jsx
+// ======================================================
+//
+//  Este componente permite eliminar profesores registrados.
+// Borra solo la colección "profesores" en Firestore.
+//
+//  DEPENDENCIAS PRINCIPALES:
+// - React: manejo de estados y renderizado.
+// - Firebase Firestore: lectura y eliminación de documentos.
+// - BotonRedirigir: navegación de vuelta al panel admin.
+// - CSS: estilos de la página.
+//
+// ======================================================
+
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase/firebase";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
