@@ -11,54 +11,58 @@ const Registro = () => {
   const [apellido, setApellido] = useState("");
   const [contrasenia, setContrasenia] = useState("");
   const [email, setEmail] = useState("");
+  const [rol, setRol] = useState("profesor"); // Selector de rol
   const [materias, setMaterias] = useState([{ materia: "", curso: "" }]);
   const [error, setError] = useState("");
   const [exito, setExito] = useState("");
 
-  // Agregar más materias/cursos
   const agregarMateria = () => {
     setMaterias([...materias, { materia: "", curso: "" }]);
   };
 
-  // Actualizar materia/curso
   const handleMateriaChange = (index, campo, valor) => {
     const nuevasMaterias = [...materias];
     nuevasMaterias[index][campo] = valor;
     setMaterias(nuevasMaterias);
   };
 
-  // Enviar datos a Firebase
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
     setExito("");
 
     try {
-      // Crear el usuario en la colección "usuarios"
+      // Crear usuario en Firebase Auth
       const resultado = await crearUsuario({
         usuario: email,
         contrasena: contrasenia,
-        rol: "profesor", 
+        rol,
         nombre,
         apellido,
-        materias,
+        materias: rol === "profesor" ? materias : [],
       });
 
       if (resultado) {
-        // Guardar en la colección 
-        await addDoc(collection(db, "profesores"), {
-          nombre,
-          apellido,
-          email,
-          materias,
-          rol: "profesor",
-        });
+        if (rol === "profesor") {
+          await addDoc(collection(db, "profesores"), {
+            nombre,
+            apellido,
+            email,
+            materias,
+            rol,
+          });
+        } else if (rol === "preceptor") {
+          await addDoc(collection(db, "preceptores"), {
+            nombre,
+            apellido,
+            email,
+            rol,
+          });
+        }
 
-        //Confirmación visual
         setExito("Usuario creado correctamente");
         console.log("Usuario creado:", email);
 
-        //Redirigir al login
         setTimeout(() => {
           setExito("");
           navigate("/");
@@ -125,33 +129,45 @@ const Registro = () => {
           />
         </div>
 
-        <h3>Materias y cursos que enseña</h3>
-        {materias.map((item, index) => (
-          <div key={index} className="materia-curso">
-            <input
-              type="text"
-              placeholder="Materia"
-              value={item.materia}
-              onChange={(e) =>
-                handleMateriaChange(index, "materia", e.target.value)
-              }
-              required
-            />
-            <input
-              type="text"
-              placeholder="Curso (ej: 3°1, 4°2)"
-              value={item.curso}
-              onChange={(e) =>
-                handleMateriaChange(index, "curso", e.target.value)
-              }
-              required
-            />
-          </div>
-        ))}
+        <div>
+          <label>Seleccioná tu rol:</label>
+          <select value={rol} onChange={(e) => setRol(e.target.value)}>
+            <option value="profesor">Profesor</option>
+            <option value="preceptor">Preceptor</option>
+          </select>
+        </div>
 
-        <button type="button" onClick={agregarMateria} className="btn-agregar">
-         Agregar otra materia
-        </button>
+        {rol === "profesor" && (
+          <>
+            <h3>Materias y cursos que enseña</h3>
+            {materias.map((item, index) => (
+              <div key={index} className="materia-curso">
+                <input
+                  type="text"
+                  placeholder="Materia"
+                  value={item.materia}
+                  onChange={(e) =>
+                    handleMateriaChange(index, "materia", e.target.value)
+                  }
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="Curso (ej: 3°1, 4°2)"
+                  value={item.curso}
+                  onChange={(e) =>
+                    handleMateriaChange(index, "curso", e.target.value)
+                  }
+                  required
+                />
+              </div>
+            ))}
+
+            <button type="button" onClick={agregarMateria} className="btn-agregar">
+              Agregar otra materia
+            </button>
+          </>
+        )}
 
         <button type="submit" className="btn-registrar">
           Registrarse
