@@ -58,7 +58,43 @@ El estilo fue pensado para entornos escolares donde los docentes deben interactu
 ##  Trabajo en equipo 
 
 Algunos commits del equipo se hicieron para arreglar merge conflicts que surgieron al juntar el trabajo de todos, y otros para resolver problemas que algún compañero no pudo solucionar. Esto demuestra cómo vamos colaborando, ayudándonos entre todos y asegurándonos de que el proyecto siga avanzando sin trabas. 
+## ⚙️ Requisitos previos 
+## Antes de clonar el proyecto, asegurate de tener instalado:
+- [Node.js](https://nodejs.org/) (versión 16 o superior)
+- [npm](https://www.npmjs.com/) o [yarn](https://yarnpkg.com/)
+- Cuenta en [Firebase Console](https://console.firebase.google.com/) (para configuración de base de datos y autenticación)
+## 🧩 Instalación y ejecución local
+1️⃣ Clonar el repositorio
+git clone https://github.com/tu-usuario/ASISTENCIA-TOUCH.git
+Reemplazá tu-usuario por tu nombre de usuario real de GitHub
+2️⃣ Acceder al directorio del proyecto
+cd ASISTENCIA-TOUCH
+3️⃣ Instalar dependencias
+npm install
+4️⃣ Configurar Firebase
+Dentro de la carpeta src/firebase, creá un archivo llamado firebase.js con la siguiente estructura:
+// src/firebase/firebase.js
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 
+const firebaseConfig = {
+  apiKey: "TU_API_KEY",
+  authDomain: "TU_AUTH_DOMAIN",
+  projectId: "TU_PROJECT_ID",
+  storageBucket: "TU_STORAGE_BUCKET",
+  messagingSenderId: "TU_SENDER_ID",
+  appId: "TU_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+export const auth = getAuth(app);
+export const db = getFirestore(app);
+🔑 Reemplazá los valores con los datos reales de tu proyecto en Firebase Console.
+5️⃣ Ejecutar el proyecto
+npm start
+Luego abrí el navegador en:
+http://localhost:3000
 **Historial de push Daniela Rojas**
 17/05/2025 
 
