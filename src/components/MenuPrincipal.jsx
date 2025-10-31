@@ -7,6 +7,7 @@ import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import "../index.css";
 import BotonRedirigir from "../components/BotonRedirigir";
 import '../css/MenuPrincipal.css';
+import '../css/MenuProfe.css';
 
 const MenuPrincipal = () => {
   const navigate = useNavigate();
@@ -176,48 +177,51 @@ const MenuPrincipal = () => {
             </div>
           </div>
         ) : (
-          <div className="student-container">
-            <h1>Bienvenido Profe</h1>
-            <h2 className="welcome-subtitle">Seleccione su curso y materia:</h2>
+          <div className="profe-wrapper">
+    <div className="profe-container">
+      <h1>Bienvenido Profe</h1>
+      <h2 className="profe-subtitle">Seleccione su curso y materia:</h2>
 
-            <div className="menu-principal-container">
-              <label className="curso-label">CURSO:</label>
-              <select
-                className="curso-select"
-                value={cursoSeleccionado}
-                onChange={(e) => setCursoSeleccionado(e.target.value)}
-              >
-                <option value="">Seleccione un curso</option>
-                {cursos.map((curso) => (
-                  <option key={curso.id} value={curso.nombre}>
-                    {curso.nombre}
-                  </option>
-                ))}
-              </select>
+      <div className="profe-menu">
+        <label className="profe-label">CURSO:</label>
+        <select
+          className="profe-select"
+          value={cursoSeleccionado}
+          onChange={(e) => setCursoSeleccionado(e.target.value)}
+        >
+          <option value="">Seleccione un curso</option>
+          {cursos.map((curso) => (
+            <option key={curso.id} value={curso.nombre}>
+              {curso.nombre}
+            </option>
+          ))}
+        </select>
 
-              <label className="materia-label" style={{ marginLeft: 12 }}>
-                MATERIA:
-              </label>
-              <select
-                className="materia-select"
-                value={materiaSeleccionada}
-                onChange={(e) => setMateriaSeleccionada(e.target.value)}
-              >
-                <option value="">Seleccione una materia</option>
-                {materias.map((mat) => (
-                  <option key={mat.id} value={mat.nombre}>
-                    {mat.nombre}
-                  </option>
-                ))}
-              </select>
-            </div>
+        <label className="profe-label" style={{ marginLeft: 12 }}>
+          MATERIA:
+        </label>
+        <select
+          className="profe-select"
+          value={materiaSeleccionada}
+          onChange={(e) => setMateriaSeleccionada(e.target.value)}
+        >
+          <option value="">Seleccione una materia</option>
+          {materias.map((mat) => (
+            <option key={mat.id} value={mat.nombre}>
+              {mat.nombre}
+            </option>
+          ))}
+        </select>
+      </div>
 
-            <br />
-            <button className="next-button" onClick={guardarAsistencia}>
-              Confirmar asistencia y continuar
-            </button>
-          </div>
-        )}
+      <br />
+      <button className="profe-button" onClick={guardarAsistencia}>
+        Confirmar asistencia y continuar
+      </button>
+    </div>
+  </div>
+)}
+
       </div>
     </div>
   );
