@@ -109,8 +109,33 @@ const MenuPrincipal = () => {
   }
 };
 const registrarAusencia = async () => {
-  alert("Función de registrar ausencia todavía no implementada.");
+  if (!profesorSeleccionado || !cursoSeleccionado || !materiaSeleccionada) {
+    alert("Por favor, seleccioná profesor, curso y materia antes de registrar la ausencia.");
+    return;
+  }
+
+  try {
+    const asistenciaRef = collection(db, "asistencias");
+
+    await addDoc(asistenciaRef, {
+      profesor: profesorSeleccionado,
+      curso: cursoSeleccionado,
+      materia: materiaSeleccionada,
+      fecha: new Date().toLocaleDateString("es-AR"),
+      hora: new Date().toLocaleTimeString("es-AR"),
+      estado: "ausente"
+    });
+
+    alert("Ausencia registrada correctamente.");
+
+  
+
+  } catch (error) {
+    console.error("Error al registrar ausencia:", error);
+    alert("❌ Ocurrió un error al registrar la ausencia.");
+  }
 };
+
 
   return (
     <div className="menu-wrapper">
