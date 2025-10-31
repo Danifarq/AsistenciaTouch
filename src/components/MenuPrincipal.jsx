@@ -1,3 +1,23 @@
+
+// MenuPrincipal.jsx
+/**
+ * Componente principal que actúa como "hub" según rol de usuario.
+ * Funcionalidades:
+ * - Detecta rol de usuario (admin, preceptor, profesor) y carga menú correspondiente.
+ * - Inicializa datos por defecto: cursos, materias, preceptores y usuarios.
+ * - Funciones para:
+ *    - guardarAsistencia (profesores)
+ *    - registrarAusencia (preceptores)
+ *
+ * Estado interno:
+ * - cursoSeleccionado, materiaSeleccionada, profesorSeleccionado
+ * - cursos, materias, usuarios
+ * - cargandoDatos: controla la carga inicial.
+ *
+ * Notas:
+ * - Usa hooks personalizados useAuth y useProfesoresList.
+ * - AdminMenu recibe lista de usuarios para gestión de roles.
+ */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth"; 

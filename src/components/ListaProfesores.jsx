@@ -1,3 +1,12 @@
+// ListaProfesores.jsx
+/**
+ * Muestra lista de todos los profesores.
+ * Funcionalidades:
+ * - Enlaces a detalle de cada profesor.
+ * - Muestra las materias y cursos asignados.
+ * - Botones para agregar nuevo profesor o volver al menú.
+ */
+
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useProfesoresList } from "../hooks/useProfesoresList";

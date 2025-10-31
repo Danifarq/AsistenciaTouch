@@ -1,3 +1,17 @@
+// Login.jsx
+/**
+ * Componente de login.
+ * Funcionalidades:
+ * - Login con correo y contraseña.
+ * - Login con Google.
+ * - Mensajes dinámicos de error y éxito.
+ * - Guarda información de usuario en localStorage.
+ *
+ * Navegación:
+ * - Redirige a MenuPrincipal al iniciar sesión correctamente.
+ * - Botón para registrarse si no tiene cuenta.
+ */
+
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';

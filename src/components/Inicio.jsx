@@ -1,3 +1,11 @@
+// Inicio.jsx
+/**
+ * Página de confirmación de asistencia.
+ * Funcionalidades:
+ * - Muestra mensaje de éxito al registrar asistencia.
+ * - Botón para volver al menú principal.
+ */
+
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import BotonRedirigir from '../components/BotonRedirigir';
