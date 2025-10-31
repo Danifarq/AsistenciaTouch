@@ -233,7 +233,6 @@ const MenuPrincipal = () => {
                   </option>
                 ))}
               </select>
-
               <label className="materia-label" style={{ marginLeft: 12 }}>
                 MATERIA:
               </label>
