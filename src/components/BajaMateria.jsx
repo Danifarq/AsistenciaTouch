@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { obtenerMaterias, eliminarMateria } from "../hooks/useMaterias";
 import { useNavigate } from "react-router-dom";
-import BotonRedirigir from '../components/BotonRedirigir';
-import '../css/BajaMateria.css';
+import BotonRedirigir from "../components/BotonRedirigir";
+import "../css/BajaMateria.css";
+
 const BajaMateria = () => {
   const [materias, setMaterias] = useState([]);
   const [mensaje, setMensaje] = useState("");
@@ -14,8 +15,11 @@ const BajaMateria = () => {
   };
 
   const handleEliminar = async (id) => {
+    const confirmar = window.confirm("¿Seguro que querés eliminar esta materia?");
+    if (!confirmar) return;
+
     await eliminarMateria(id);
-    setMensaje("Materia eliminada correctamente.");
+    setMensaje("Materia eliminada correctamente ✅");
     cargarMaterias();
   };
 
@@ -24,20 +28,43 @@ const BajaMateria = () => {
   }, []);
 
   return (
-    <div className="container">
-      <h1>Baja de Materia</h1>
-      {materias.map((mat) => (
-        <div key={mat.id} className="materia-item">
-          <span>{mat.nombre}</span>
-          <button onClick={() => handleEliminar(mat.id)}>Eliminar</button>
+    <div className="baja-materia-page">
+      <div className="baja-materia-box">
+        <h1 className="baja-materia-title">Baja de materia</h1>
+
+        {materias.length === 0 ? (
+          <p>No hay materias registradas.</p>
+        ) : (
+          <ul className="baja-materia-lista">
+            {materias.map((mat) => (
+              <li key={mat.id} className="baja-materia-item">
+                <span className="materia-nombre">{mat.nombre}</span>
+                <button
+                  onClick={() => handleEliminar(mat.id)}
+                  className="baja-materia-btn"
+                >
+                  Eliminar
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+
+        {mensaje && (
+          <p
+            className={
+              mensaje.includes("correctamente") ? "mensaje-exito" : "mensaje-error"
+            }
+          >
+            {mensaje}
+          </p>
+        )}
+
+        <div className="volver-panel">
+          <BotonRedirigir textoBoton="ir a Panel Admin" ruta="/menuprincipal" />
         </div>
-      ))}
-      {mensaje && <p>{mensaje}</p>}
-     
-     <div style={{ marginBottom: 8 }}>
-              <BotonRedirigir textoBoton="ir a Panel Admin" ruta="/menuprincipal" />
-            </div>
-            </div>
+      </div>
+    </div>
   );
 };
 

@@ -1,5 +1,4 @@
-/* Estilos generales del formulario de Alta Materia */
-.alta-materia-page {
+.baja-materia-page {
   background-image: url('../css/fondo.jpg');
   background-size: cover;
   background-position: center;
@@ -11,59 +10,92 @@
   align-items: center;
 }
 
-.alta-materia-box {
+.baja-materia-box {
   background-color: #ffffff;
   border-radius: 25px;
   box-shadow: 10px 10px 0px #144c4c;
-  padding: 2rem;
-  width: 380px;
-  text-align: center;
+  padding: 2rem 3rem;
   border: 4px solid #144c4c;
+  min-width: 450px;
 }
 
-.alta-materia-title {
-  margin-bottom: 1.5rem;
-  font-size: 2.5rem;
-  color: #144c4c;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-.alta-materia-input {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 12px;
-  border-radius: 25px;
-  border: 3px solid #144c4c;
+.baja-materia-title {
   text-align: center;
-  font-weight: 600;
+  font-size: 2.5rem;
+  font-weight: bold;
   color: #144c4c;
+  text-decoration: underline;
+  margin-bottom: 1.5rem;
 }
 
-.alta-materia-btn {
-  width: 100%;
-  padding: 10px;
+/* LISTA DE MATERIAS */
+.baja-materia-lista {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.baja-materia-item {
+  display: grid;
+  grid-template-columns: 1fr auto; 
+  align-items: center;
+  padding: 0.4rem 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.materia-nombre {
+  font-weight: bold;
+  color: #144c4c;
+  font-size: 1.1rem;
+  text-align: left;
+  padding-right: 10px;
+}
+
+/* BOTÓN ELIMINAR */
+.baja-materia-btn {
+  background-color: #e63946;
+  color: white;
   border: none;
   border-radius: 25px;
-  background-color: #144c4c;
-  color: white;
-  font-weight: bold;
+  padding: 6px 18px;
   cursor: pointer;
-  font-size: 1rem;
-  margin-bottom: 10px;
-  transition: background-color 0.3s ease;
+  font-weight: bold;
+  font-size: 0.95rem;
+  justify-self: end; 
+  transition: all 0.3s ease;
 }
 
-.alta-materia-btn:hover {
-  background-color: #0f3636;
+.baja-materia-btn:hover {
+  background-color: #b0232f;
+  transform: scale(1.05);
+}
+
+/* MENSAJES */
+.mensaje-exito {
+  color: green;
+  margin-top: 10px;
+  text-align: center;
 }
 
 .mensaje-error {
   color: red;
   margin-top: 10px;
+  text-align: center;
 }
 
-.mensaje-exito {
-  color: green;
-  margin-top: 10px;
+/* LINK PANEL ADMIN */
+.volver-panel {
+  margin-top: 1.2rem;
+  text-align: center;
+}
+
+.volver-panel a {
+  color: #144c4c;
+  font-weight: bold;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.volver-panel a:hover {
+  color: #0f3636;
 }
