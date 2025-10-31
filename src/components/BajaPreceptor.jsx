@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { db } from "../firebase/firebase";
 import { collection, getDocs, deleteDoc, doc, query, where } from "firebase/firestore";
 import '../css/AdminMenu.css';
-
+import BotonRedirigir from "../components/BotonRedirigir";
 const BajaPreceptor = () => {
   const [preceptores, setPreceptores] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -58,6 +58,9 @@ const BajaPreceptor = () => {
           ))}
         </ul>
       )}
+      <div className="volver-panel">
+          <BotonRedirigir textoBoton="ir a Panel Admin" ruta="/menuprincipal" />
+        </div>
     </div>
   );
 };

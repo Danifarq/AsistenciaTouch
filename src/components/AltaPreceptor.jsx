@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { db } from "../firebase/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import '../css/AdminMenu.css';
-
+import BotonRedirigir from "../components/BotonRedirigir";
 const AltaPreceptor = () => {
   const [nombre, setNombre] = useState("");
   const [apellido, setApellido] = useState("");
@@ -56,6 +56,9 @@ const AltaPreceptor = () => {
         />
         <button type="submit" className="btn-verde">Agregar Preceptor</button>
       </form>
+      <div className="volver-panel">
+          <BotonRedirigir textoBoton="ir a Panel Admin" ruta="/menuprincipal" />
+        </div>
     </div>
   );
 };
