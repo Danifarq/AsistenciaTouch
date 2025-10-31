@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase/firebase";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
-import { useNavigate } from "react-router-dom";
 import BotonRedirigir from '../components/BotonRedirigir';
 import '../css/BajaProfesor.css';
 
-
 const BajaProfesor = () => {
   const [profesores, setProfesores] = useState([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const obtenerProfesores = async () => {
