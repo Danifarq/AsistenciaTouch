@@ -26,7 +26,7 @@ import { db } from "../firebase/firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import "../css/MenuPrincipal.css";
 import "../css/MenuProfe.css";
-
+import BotonRedirigir from "./BotonRedirigir";
 import AdminMenu from "./AdminMenu";
 import PreceptorMenu from "./PreceptorMenu";
 import ProfeMenu from "./ProfeMenu";
