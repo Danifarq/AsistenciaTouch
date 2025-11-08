@@ -1,7 +1,7 @@
 {
   "name": "asistencia-touch",
   "version": "0.1.0",
-  "homepage": "https://danifarq.github.io/ASISTENCIA-TOUCH",
+  "homepage": "https://danifarq.github.io/AsistenciaTouch",
   "private": true,
   "dependencies": {
     "@testing-library/dom": "^10.4.0",
