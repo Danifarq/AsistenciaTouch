@@ -120,9 +120,10 @@ const MenuPrincipal = () => {
       hora: new Date().toLocaleTimeString("es-AR"),
       estado: "presente"
     });
-
-  
-    navigate("/inicio.jsx");
+ <BotonRedirigir 
+        textoBoton="Ir a inicio" 
+        ruta="/inicio" 
+      />
   } catch (error) {
     console.error("Error al guardar asistencia:", error);
     alert("❌ Hubo un error al registrar la asistencia.");
