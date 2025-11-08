@@ -19,7 +19,7 @@
  * - AdminMenu recibe lista de usuarios para gestión de roles.
  */
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { useAuth } from "../hooks/useAuth"; 
 import { useProfesoresList } from "../hooks/useProfesoresList"; 
 import { db } from "../firebase/firebase";
@@ -32,14 +32,14 @@ import PreceptorMenu from "./PreceptorMenu";
 import ProfeMenu from "./ProfeMenu";
 
 const MenuPrincipal = () => {
-  const navigate = useNavigate();
+
   const [cursoSeleccionado, setCursoSeleccionado] = useState("");
   const [materiaSeleccionada, setMateriaSeleccionada] = useState("");
   const [profesorSeleccionado, setProfesorSeleccionado] = useState("");
   const [cursos, setCursos] = useState([]);
   const [materias, setMaterias] = useState([]);
   const [cargandoDatos, setCargandoDatos] = useState(true);
-  const [usuarios, setUsuarios] = useState([]); // Para AdminMenu
+  const [usuarios, setUsuarios] = useState([]); 
 
   const { user, userRole, loading: authLoading } = useAuth();
   const { profesores, loading: profesoresLoading } = useProfesoresList();

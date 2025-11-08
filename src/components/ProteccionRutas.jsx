@@ -28,14 +28,14 @@
  */
 
 import React, { useEffect, useState } from "react";
-import { Navigate, useNavigate } from "react-router-dom";
+
 import { useAuth } from "../hooks/useAuth";
 
 const ProteccionRutas = ({ children, roleRequired }) => {
   const { user, userRole, loading } = useAuth();
   const [mensaje, setMensaje] = useState("");
   const [redirigir, setRedirigir] = useState(false);
-  const navigate = useNavigate();
+
 
   useEffect(() => {
     if (!loading) {

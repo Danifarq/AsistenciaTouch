@@ -17,7 +17,7 @@
 
 import React, { useEffect, useState } from "react";
 import { obtenerCursos, eliminarCurso } from "../hooks/useCursos";
-import { useNavigate } from "react-router-dom";
+
 import BotonRedirigir from "../components/BotonRedirigir";
 import "../css/BajaCurso.css";
 
@@ -30,7 +30,7 @@ const BajaCurso = () => {
   const [cursos, setCursos] = useState([]);
   const [mensaje, setMensaje] = useState("");
 
-  const navigate = useNavigate();
+
 
   // ----------------------------------------------
   //  cargarCursos:

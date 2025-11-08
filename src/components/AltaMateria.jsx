@@ -16,7 +16,7 @@
 
 import React, { useState } from "react";
 import { crearMateria } from "../hooks/useMaterias";
-import { useNavigate } from "react-router-dom";
+
 import BotonRedirigir from '../components/BotonRedirigir';
 import '../css/AltaMateria.css';
 
@@ -29,8 +29,7 @@ const AltaMateria = () => {
   const [nombre, setNombre] = useState("");
   const [mensaje, setMensaje] = useState("");
 
-  // Hook de navegación (actualmente no usado pero disponible para redirecciones).
-  const navigate = useNavigate();
+
 
   // ----------------------------------------------
   //  handleSubmit:
