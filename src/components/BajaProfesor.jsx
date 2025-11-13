@@ -18,9 +18,11 @@ import { db } from "../firebase/firebase";
 import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
 import BotonRedirigir from '../components/BotonRedirigir';
 import '../css/BajaProfesor.css';
+import { desactivarProfesor } from "../hooks/useProfesores";
 
 const BajaProfesor = () => {
   const [profesores, setProfesores] = useState([]);
+  const [mensaje, setMensaje] = useState("");
 
   useEffect(() => {
     const obtenerProfesores = async () => {
@@ -38,17 +40,15 @@ const BajaProfesor = () => {
     obtenerProfesores();
   }, []);
 
-  const eliminarProfesor = async (id) => {
+  const handleEliminar = async (id) => {
     const confirmar = window.confirm("¿Seguro que querés eliminar este profesor?");
     if (!confirmar) return;
 
     try {
-      await deleteDoc(doc(db, "profesores", id));
-      setProfesores((prev) => prev.filter((p) => p.id !== id));
-      alert("Profesor eliminado correctamente ✅");
-    } catch (error) {
-      console.error("Error al eliminar profesor:", error);
-      alert("Ocurrió un error al eliminar el profesor.");
+      await desactivarProfesor(id);
+      setMensaje("Profesor eliminado correctamente ✅");
+    }catch (error) {
+      setMensaje("Error al eliminar profesor:", error);
     }
   };
 
