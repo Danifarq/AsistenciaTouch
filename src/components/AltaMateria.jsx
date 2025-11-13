@@ -15,7 +15,7 @@
 // ======================================================
 
 import React, { useState } from "react";
-import { crearMateria } from "../hooks/useMaterias";
+import { activarMateria, crearMateria } from "../hooks/useMaterias";
 
 import BotonRedirigir from '../components/BotonRedirigir';
 import '../css/AltaMateria.css';
@@ -45,10 +45,14 @@ const AltaMateria = () => {
       setMensaje("Por favor ingresa un nombre de materia.");
       return;
     }
-
+    if (nombre.trim()=crearMateria(nombre)){
+      await activarMateria(nombre);
+      setMensaje("La materia ya existía y ha sido activada nuevamente.");
+      setNombre("");
+    }else {
     await crearMateria(nombre);
     setMensaje("Materia creada correctamente.");
-    setNombre("");
+    setNombre("");}
   };
 
   // ----------------------------------------------

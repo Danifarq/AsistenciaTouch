@@ -35,7 +35,7 @@ const BajaMateria = () => {
     if (!confirmar) return;
 
     await desactivarMateria(id);
-    setMensaje("Materia correctamente ✅");
+    setMensaje("Materia eliminada correctamente ✅");
     cargarMaterias();
 
     {/*await eliminarMateria(id);
