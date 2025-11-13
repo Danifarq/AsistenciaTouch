@@ -38,11 +38,10 @@ export const useProfesores = () => {
   useEffect(() => {
     obtenerProfesores();
   }, []);
+  };
 
-  return { profesores, cargando, agregarProfesor };
-};
 
-const activarProfesor = async (id) => {
+  const activarProfesor = async (id) => {
   try{
     const profesorRef = doc(db, "profesores", id);
     await updateDoc(profesorRef, { activo: true });
@@ -58,3 +57,7 @@ const desactivarProfesor = async (id) => {
     console.error("Error al desactivar profesor:", error);
   }
 };
+
+  return { profesores, cargando, agregarProfesor, desactivarProfesor, activarProfesor };
+
+
