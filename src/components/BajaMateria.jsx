@@ -15,14 +15,16 @@
 // ======================================================
 
 import React, { useEffect, useState } from "react";
-import { obtenerMaterias, eliminarMateria } from "../hooks/useMaterias";
-
+import { obtenerMaterias, eliminarMateria, desactivarMateria } from "../hooks/useMaterias";
+import { useNavigate } from "react-router-dom";
 import BotonRedirigir from "../components/BotonRedirigir";
 import "../css/BajaMateria.css";
 
 const BajaMateria = () => {
   const [materias, setMaterias] = useState([]);
   const [mensaje, setMensaje] = useState("");
+  const navigate = useNavigate();
+
   const cargarMaterias = async () => {
     const data = await obtenerMaterias();
     setMaterias(data);
@@ -32,10 +34,14 @@ const BajaMateria = () => {
     const confirmar = window.confirm("¿Seguro que querés eliminar esta materia?");
     if (!confirmar) return;
 
-    await eliminarMateria(id);
+    await desactivarMateria(id);
+    setMensaje("Materia correctamente ✅");
+    cargarMaterias();
+
+    {/*await eliminarMateria(id);
     setMensaje("Materia eliminada correctamente ✅");
     cargarMaterias();
-  };
+  */} };
 
   useEffect(() => {
     cargarMaterias();
