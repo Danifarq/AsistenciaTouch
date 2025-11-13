@@ -16,7 +16,7 @@
 
 import React, { useState } from "react";
 import { crearCurso } from "../hooks/useCursos";
-import { useNavigate } from "react-router-dom";
+
 import BotonRedirigir from '../components/BotonRedirigir';
 import '../css/AltaCurso.css';
 
@@ -30,7 +30,7 @@ const AltaCurso = () => {
   const [mensaje, setMensaje] = useState("");
 
   // Hook de navegación para redirigir a otras rutas.
-  const navigate = useNavigate();
+  
 
   // ----------------------------------------------
   // handleSubmit:

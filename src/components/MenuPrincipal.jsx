@@ -19,27 +19,27 @@
  * - AdminMenu recibe lista de usuarios para gestión de roles.
  */
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { useAuth } from "../hooks/useAuth"; 
 import { useProfesoresList } from "../hooks/useProfesoresList"; 
 import { db } from "../firebase/firebase";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 import "../css/MenuPrincipal.css";
 import "../css/MenuProfe.css";
-
+import BotonRedirigir from "./BotonRedirigir";
 import AdminMenu from "./AdminMenu";
 import PreceptorMenu from "./PreceptorMenu";
 import ProfeMenu from "./ProfeMenu";
 
 const MenuPrincipal = () => {
-  const navigate = useNavigate();
+
   const [cursoSeleccionado, setCursoSeleccionado] = useState("");
   const [materiaSeleccionada, setMateriaSeleccionada] = useState("");
   const [profesorSeleccionado, setProfesorSeleccionado] = useState("");
   const [cursos, setCursos] = useState([]);
   const [materias, setMaterias] = useState([]);
   const [cargandoDatos, setCargandoDatos] = useState(true);
-  const [usuarios, setUsuarios] = useState([]); // Para AdminMenu
+  const [usuarios, setUsuarios] = useState([]); 
 
   const { user, userRole, loading: authLoading } = useAuth();
   const { profesores, loading: profesoresLoading } = useProfesoresList();
@@ -120,9 +120,10 @@ const MenuPrincipal = () => {
       hora: new Date().toLocaleTimeString("es-AR"),
       estado: "presente"
     });
-
-  
-    navigate("/inicio.jsx");
+ <BotonRedirigir 
+        textoBoton="Ir a inicio" 
+        ruta="/inicio" 
+      />
   } catch (error) {
     console.error("Error al guardar asistencia:", error);
     alert("❌ Hubo un error al registrar la asistencia.");

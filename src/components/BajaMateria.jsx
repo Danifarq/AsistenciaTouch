@@ -16,15 +16,13 @@
 
 import React, { useEffect, useState } from "react";
 import { obtenerMaterias, eliminarMateria } from "../hooks/useMaterias";
-import { useNavigate } from "react-router-dom";
+
 import BotonRedirigir from "../components/BotonRedirigir";
 import "../css/BajaMateria.css";
 
 const BajaMateria = () => {
   const [materias, setMaterias] = useState([]);
   const [mensaje, setMensaje] = useState("");
-  const navigate = useNavigate();
-
   const cargarMaterias = async () => {
     const data = await obtenerMaterias();
     setMaterias(data);
