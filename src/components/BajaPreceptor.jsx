@@ -43,7 +43,8 @@ const BajaPreceptor = () => {
   }, []);
 
   const handleEliminar = async (id) => {
-    if (!window.confirm("¿Estás seguro de eliminar este preceptor?")) return;
+    const confirmar = !window.confirm("¿Estás seguro de eliminar este preceptor?");
+    if (!confirmar) return;
 
     try {
       await desactivarPreceptor(id); // Desactivar en "preceptores"

@@ -41,3 +41,20 @@ export const useProfesores = () => {
 
   return { profesores, cargando, agregarProfesor };
 };
+
+const activarProfesor = async (id) => {
+  try{
+    const profesorRef = doc(db, "profesores", id);
+    await updateDoc(profesorRef, { activo: true });
+  } catch (error) {
+    console.error("Error al activar profesor:", error);
+  }
+}
+const desactivarProfesor = async (id) => {
+  try{
+    const profesorRef = doc(db, "profesores", id);
+    await updateDoc(profesorRef, { activo: false });
+  } catch (error) {
+    console.error("Error al desactivar profesor:", error);
+  }
+};
