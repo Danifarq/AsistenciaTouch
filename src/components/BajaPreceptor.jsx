@@ -23,6 +23,7 @@ const BajaPreceptor = () => {
   const [preceptores, setPreceptores] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const [mensaje, setMensaje] = useState("");
 
   useEffect(() => {
     const fetchPreceptores = async () => {
@@ -45,20 +46,10 @@ const BajaPreceptor = () => {
     if (!window.confirm("¿Estás seguro de eliminar este preceptor?")) return;
 
     try {
-      await deleteDoc(doc(db, "usuarios", id));
-
-      const preceptoresRef = collection(db, "preceptores");
-      const q = query(preceptoresRef, where("id", "==", id));
-      const snapshot = await getDocs(q);
-      snapshot.forEach(async (docSnap) => {
-        await deleteDoc(doc(db, "preceptores", docSnap.id));
-      });
-
-      setPreceptores(preceptores.filter((p) => p.id !== id));
-      alert("Preceptor eliminado de ambas colecciones.");
-    } catch (err) {
-      console.error("Error eliminando preceptor:", err);
-      alert("Ocurrió un error al eliminar el preceptor.");
+      await desactivarPreceptor(id); // Desactivar en "preceptores"
+      setMensaje("Preceptor eliminado correctamente ✅");
+    } catch (error) {
+      setError("Ocurrió un error al eliminar el preceptor.");  
     }
   };
 

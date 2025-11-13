@@ -20,6 +20,7 @@ import { db } from "../firebase/firebase";
 import { collection, addDoc } from "firebase/firestore";
 import BotonRedirigir from "../components/BotonRedirigir";
 import "../css/AltaPreceptor.css";
+import '../hooks/usePreceptores';
 
 const AltaPreceptor = () => {
   // ----------------------------------------------
@@ -49,6 +50,12 @@ const AltaPreceptor = () => {
     setError("");
     setExito("");
 
+    if (nombre || apellido || rol == setPreceptores(lista) ) {
+      try{ activarPreceptor(id); // Activar en "preceptores"
+      setMensaje("Preceptor activado correctamente ✅");
+    } catch (error) {
+      console.error("Error al activar preceptor:", error);
+    }
     if (!nombre || !apellido || !email) {
       setError("Por favor completa todos los campos.");
       return;
@@ -80,6 +87,7 @@ const AltaPreceptor = () => {
       setError("Ocurrió un error al agregar el preceptor.");
     }
   };
+}
 
   // ----------------------------------------------
   //  Render:
@@ -142,4 +150,4 @@ export default AltaPreceptor;
 // - BotonRedirigir.jsx → componente reutilizable de navegación.
 // - AltaPreceptor.css → define estilos visuales de la pantalla.
 //
-// ======================================================
+// ====================================================== 
