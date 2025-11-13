@@ -40,4 +40,20 @@ const agregarPreceptor = async (nuevoPreceptor) => {
     throw error;
   }
 };
-return { preceptores, cargando, agregarPreceptor };
+const activarPreceptor = async (id) => {
+  try{
+    const preceptorRef = doc(db, "preceptores", id);
+    await updateDoc(preceptorRef, { activo: true });
+  } catch (error) {
+    console.error("Error al activar preceptor:", error);
+  }
+}
+const desactivarPreceptor = async (id) => {
+  try{
+    const preceptorRef = doc(db, "preceptores", id);
+    await updateDoc(preceptorRef, { activo: false });
+  } catch (error) {
+    console.error("Error al desactivar preceptor:", error);
+  }
+}
+return { preceptores, cargando, agregarPreceptor, activarPreceptor, desactivarPreceptor };
