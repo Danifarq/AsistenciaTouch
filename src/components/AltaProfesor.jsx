@@ -70,7 +70,12 @@ const AltaProfesor = () => {
   // ----------------------------------------------
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    if (nombre.trim() || materia.trim() || email.trim() == setProfesores(lista) ) {
+      try{ activarProfesor(id); // Activar en "profesores"
+      setMensaje("Profesor activado correctamente ✅");
+    } catch (error) {
+      console.error("Error al activar profesor:", error);
+    }
     if (!nombre.trim() || !materia.trim() || !email.trim()) {
       setMensaje("⚠️ Completa todos los campos");
       return;
@@ -93,6 +98,7 @@ const AltaProfesor = () => {
       setMensaje("❌ Error al guardar el profesor");
     }
   };
+}
 
   // ----------------------------------------------
   // Renderizado condicional:
