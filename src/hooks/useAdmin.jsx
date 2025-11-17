@@ -2,7 +2,7 @@ import { collection, getDocs} from "firebase/firestore";
 
 const col= collection(db, "admin");
 const snap = await getDocs(col);
-const admin = snap.docs.map((doc) => ({ id: doc.id, ...doc.admin() }));
+const admin = snap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 console.log(admin);
 
 function listenById (id, cd, errCb){

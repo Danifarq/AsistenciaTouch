@@ -1,20 +1,6 @@
 // ======================================================
 //  GUÍA PARA NUEVOS DESARROLLADORES - AltaProfesor.jsx
 // ======================================================
-//
-//  Este componente permite al administrador registrar un nuevo profesor.
-// Incluye validaciones de autenticación y rol (solo accesible para admins).
-// Los datos se guardan en Firestore a través del hook `useProfesores`.
-//
-//  DEPENDENCIAS PRINCIPALES:
-// - React: manejo del estado, renderizado y efectos.
-// - React Router: navegación y redirección (`useNavigate`).
-// - useAuth: hook personalizado que gestiona la sesión del usuario actual.
-// - useProfesores: hook que encapsula la lógica para agregar profesores.
-// - BotonRedirigir: botón reutilizable para volver al panel admin.
-// - CSS: define los estilos visuales de la página.
-//
-// ======================================================
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -24,58 +10,41 @@ import BotonRedirigir from "../components/BotonRedirigir";
 import "../css/AltaProfesor.css";
 
 const AltaProfesor = () => {
-  // ----------------------------------------------
-  //  Estados locales:
-  // - nombre, materia, email → datos del formulario.
-  // - mensaje → feedback para el usuario (errores o confirmaciones).
-  // ----------------------------------------------
+  // Hook de profesores - ahora necesitamos también la lista completa
+  const { profesores, agregarProfesor, activarProfesor } = useProfesores();
+
+  // Estados locales
   const [nombre, setNombre] = useState("");
   const [materia, setMateria] = useState("");
   const [email, setEmail] = useState("");
   const [mensaje, setMensaje] = useState("");
 
-  // Hooks personalizados y navegación:
-  const { agregarProfesor } = useProfesores(); // Agrega profesores a Firestore
-  const { user, userRole, loading: authLoading } = useAuth(); // Controla autenticación y rol
+  // Autenticación
+  const { user, userRole, loading: authLoading } = useAuth();
   const navigate = useNavigate();
 
-  // ----------------------------------------------
-  // useEffect: Verificación de autenticación y rol
-  // - Si no hay sesión → redirige al login.
-  // - Si el usuario no es admin → redirige a inicio.
-  // - Se muestra un mensaje temporal antes de redirigir.
-  // ----------------------------------------------
+  // Verificación de rol y login
   useEffect(() => {
     if (!authLoading) {
       if (!user) {
-        setMensaje("🔒 Debes iniciar sesión para acceder a esta sección.");
+        setMensaje("🔒 Debes iniciar sesión para acceder.");
         const timer = setTimeout(() => navigate("/"), 2000);
         return () => clearTimeout(timer);
       }
 
       if (userRole !== "admin") {
-        setMensaje("⚠️ No tenés permisos para acceder a esta sección.");
+        setMensaje("⚠️ No tenés permisos para acceder.");
         const timer = setTimeout(() => navigate("/"), 2000);
         return () => clearTimeout(timer);
       }
     }
   }, [authLoading, user, userRole, navigate]);
 
-  // ----------------------------------------------
-  //  handleSubmit:
-  // Maneja el envío del formulario de alta.
-  // 1️⃣ Valida campos vacíos y formato del email.
-  // 2️⃣ Llama a `agregarProfesor` del hook `useProfesores`.
-  // 3️⃣ Limpia el formulario y redirige a la página del nuevo profesor.
-  // ----------------------------------------------
+  // Enviar formulario con verificación de existencia
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (nombre.trim() || materia.trim() || email.trim() == setProfesores(lista) ) {
-      try{ activarProfesor(id); // Activar en "profesores"
-      setMensaje("Profesor activado correctamente ✅");
-    } catch (error) {
-      console.error("Error al activar profesor:", error);
-    }
+
+    // Validaciones básicas
     if (!nombre.trim() || !materia.trim() || !email.trim()) {
       setMensaje("⚠️ Completa todos los campos");
       return;
@@ -87,26 +56,62 @@ const AltaProfesor = () => {
     }
 
     try {
-      const id = await agregarProfesor({ nombre, materia, email });
-      setMensaje("✅ Profesor agregado correctamente");
-      setNombre("");
-      setMateria("");
-      setEmail("");
-      navigate(`/profesor/${id}`); // Redirige al perfil del nuevo profesor
+      // 🔍 VERIFICACIÓN: Buscar si el profesor ya existe
+      // Comparación por email (más confiable que por nombre)
+      const profesorExistente = profesores.find(
+        (prof) => prof.email.toLowerCase() === email.trim().toLowerCase()
+      );
+
+      if (profesorExistente) {
+        // El profesor ya existe en la base de datos
+        if (!profesorExistente.activo) {
+          // ✅ Caso 1: Existe pero está desactivado → ACTIVAR
+          await activarProfesor(profesorExistente.id);
+          setMensaje("✅ El profesor ya existía y ha sido activado nuevamente");
+          
+          // Limpiar campos
+          setNombre("");
+          setMateria("");
+          setEmail("");
+          
+          // Redirigir al perfil del profesor reactivado
+          setTimeout(() => {
+            navigate(`/profesor/${profesorExistente.id}`);
+          }, 1500);
+        } else {
+          // ⚠️ Caso 2: Ya existe y está activo
+          setMensaje("⚠️ Este profesor ya existe y está activo");
+        }
+      } else {
+        // 🆕 Caso 3: No existe → CREAR NUEVO
+        const nuevoProfesor = {
+          nombre: nombre.trim(),
+          materia: materia.trim(),
+          email: email.trim(),
+          activo: true
+        };
+        
+        const id = await agregarProfesor(nuevoProfesor);
+        setMensaje("✅ Profesor agregado correctamente");
+
+        // Limpiar campos
+        setNombre("");
+        setMateria("");
+        setEmail("");
+
+        // Redirigir al perfil del nuevo profesor
+        setTimeout(() => {
+          navigate(`/profesor/${id}`);
+        }, 1500);
+      }
     } catch (error) {
-      console.error(error);
+      console.error("Error en el proceso:", error);
       setMensaje("❌ Error al guardar el profesor");
     }
   };
-}
 
-  // ----------------------------------------------
-  // Renderizado condicional:
-  // - Si se está verificando la autenticación → muestra mensaje de carga.
-  // - Si no hay usuario o no es admin → muestra mensaje de redirección.
-  // ----------------------------------------------
-  if (authLoading)
-    return <p className="mensaje-cargando">Cargando autenticación...</p>;
+  // Render condicional
+  if (authLoading) return <p className="mensaje-cargando">Cargando autenticación...</p>;
 
   if (!user || userRole !== "admin") {
     return (
@@ -117,17 +122,12 @@ const AltaProfesor = () => {
     );
   }
 
-  // ----------------------------------------------
-  // Render principal:
-  // Muestra el formulario de alta de profesor y un botón
-  // para volver al panel administrativo.
-  // ----------------------------------------------
+  // Render principal
   return (
     <div className="alta-profesor-page">
       <div className="alta-profesor-box">
         <h1 className="alta-profesor-title">Alta de profesor</h1>
 
-        {/* Formulario de registro de profesor */}
         <form onSubmit={handleSubmit} className="alta-profesor-form">
           <input
             type="text"
@@ -150,10 +150,8 @@ const AltaProfesor = () => {
           <button type="submit">Guardar</button>
         </form>
 
-        {/* Mensaje de validación o confirmación */}
         {mensaje && <p className="mensaje">{mensaje}</p>}
 
-        {/*  Botón para volver al panel admin */}
         <div className="volver-panel">
           <BotonRedirigir textoBoton="Ir a Panel Admin" ruta="/menuprincipal" />
         </div>
@@ -165,16 +163,14 @@ const AltaProfesor = () => {
 export default AltaProfesor;
 
 // ======================================================
-//  RESUMEN:
-// Este componente está destinado al alta (registro) de profesores.
-// Valida la sesión, restringe acceso solo a administradores,
-// realiza validaciones de formulario y utiliza el hook `useProfesores`
-// para guardar los datos en Firestore.
-//
-//  Archivos relacionados:
-// - useProfesores.js → lógica para crear profesores.
-// - useAuth.js → controla login, rol y permisos.
-// - BotonRedirigir.jsx → navegación reutilizable.
-// - AltaProfesor.css → estilos de esta vista.
-//
+// RESUMEN DE CAMBIOS:
+// 
+// 1. Se agregó `profesores` y `activarProfesor` al destructuring del hook
+// 2. Se implementó verificación de existencia por email antes de crear
+// 3. Lógica de casos:
+//    - Si existe y está inactivo → activar
+//    - Si existe y está activo → mostrar advertencia
+//    - Si no existe → crear nuevo
+// 4. Se agregó el campo `activo: true` al crear profesor nuevo
+// 5. Redirección automática después de 1.5s en casos exitosos
 // ======================================================

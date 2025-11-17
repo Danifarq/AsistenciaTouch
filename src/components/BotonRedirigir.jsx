@@ -20,11 +20,11 @@ const BotonRedirigir = ({ textoBoton, ruta }) => {
   const navigate = useNavigate();
 
   return (
-    <div style={{ marginTop: "5px" }}>
+    <span style={{ marginTop: "5px" }}>
       <button className="boton" onClick={() => navigate(ruta)}>
         {textoBoton}
       </button>
-    </div>
+    </span>
   );
 };
 

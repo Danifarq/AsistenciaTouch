@@ -1,28 +1,15 @@
-// ======================================================
-//  GUÍA PARA NUEVOS DESARROLLADORES - BajaProfesor.jsx
-// ======================================================
-//
-//  Este componente permite eliminar profesores registrados.
-// Borra solo la colección "profesores" en Firestore.
-//
-//  DEPENDENCIAS PRINCIPALES:
-// - React: manejo de estados y renderizado.
-// - Firebase Firestore: lectura y eliminación de documentos.
-// - BotonRedirigir: navegación de vuelta al panel admin.
-// - CSS: estilos de la página.
-//
-// ======================================================
-
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase/firebase";
-import { collection, getDocs, deleteDoc, doc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import BotonRedirigir from '../components/BotonRedirigir';
 import '../css/BajaProfesor.css';
-import { desactivarProfesor } from "../hooks/useProfesores";
+import { useProfesores } from "../hooks/useProfesores";
 
 const BajaProfesor = () => {
   const [profesores, setProfesores] = useState([]);
   const [mensaje, setMensaje] = useState("");
+
+  const { desactivarProfesor } = useProfesores(); // ✔️ importación correcta
 
   useEffect(() => {
     const obtenerProfesores = async () => {
@@ -47,8 +34,9 @@ const BajaProfesor = () => {
     try {
       await desactivarProfesor(id);
       setMensaje("Profesor eliminado correctamente ✅");
-    }catch (error) {
-      setMensaje("Error al eliminar profesor:", error);
+    } catch (error) {
+      setMensaje("Error al eliminar profesor");
+      console.error(error);
     }
   };
 
@@ -67,7 +55,7 @@ const BajaProfesor = () => {
                   {prof.nombre || "Profesor sin nombre"}
                 </span>
                 <button
-                  onClick={() => eliminarProfesor(prof.id)}
+                  onClick={() => handleEliminar(prof.id)}
                   className="baja-profesor-btn"
                 >
                   Eliminar
@@ -76,6 +64,8 @@ const BajaProfesor = () => {
             ))}
           </ul>
         )}
+
+        {mensaje && <p>{mensaje}</p>}
 
         <div className="volver-panel">
           <BotonRedirigir textoBoton="ir a Panel Admin" ruta="/menuprincipal" />

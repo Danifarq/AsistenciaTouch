@@ -1,8 +1,17 @@
-import { collection, getDocs} from "firebase/firestore";
+import { useState, useEffect } from "react";
+import { 
+  collection,
+  getDocs,
+  addDoc,
+  doc,
+  updateDoc
+} from "firebase/firestore";
+import { db } from "../firebase/firebase";
+
 
 const col= collection(db, "preceptores");
 const snap = await getDocs(col);
-const preceptores = snap.docs.map((doc) => ({ id: doc.id, ...doc.preceptores() }));
+const preceptores = snap.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
 console.log(preceptores);
 
 export const usePreceptores = () => {
@@ -28,8 +37,7 @@ export const usePreceptores = () => {
     obtenerPreceptores();
   }, []);
 
-  return { preceptores, cargando };
-};
+
 const agregarPreceptor = async (nuevoPreceptor) => {
   try {
     const docRef = await addDoc(collection(db, "preceptores"), nuevoPreceptor);
@@ -56,4 +64,5 @@ const desactivarPreceptor = async (id) => {
     console.error("Error al desactivar preceptor:", error);
   }
 }
-return { preceptores, cargando, agregarPreceptor, activarPreceptor, desactivarPreceptor };
+  return { preceptores, cargando, agregarPreceptor, activarPreceptor, desactivarPreceptor  };
+};

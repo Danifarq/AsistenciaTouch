@@ -9,15 +9,22 @@ export const crearUsuario = async ({ usuario, contrasena, rol, ...otrosDatos }) 
   }
 
   try {
+    // 1️⃣ Crear usuario en Firebase Authentication
     const userCredential = await createUserWithEmailAndPassword(auth, usuario, contrasena);
     const user = userCredential.user;
 
+    // 2️⃣ Crear documento en Firestore usando el UID como ID del documento
     await setDoc(doc(db, 'usuarios', user.uid), {
       rol: rol || 'usuario',
       ...otrosDatos
     });
     
-    return { exito: true, mensaje: "Usuario creado con éxito." };
+    // ✅ CAMBIO IMPORTANTE: Ahora retornamos también el UID
+    return { 
+      exito: true, 
+      mensaje: "Usuario creado con éxito.",
+      uid: user.uid  // 👈 Agregamos el UID aquí
+    };
   } catch (error) {
     let mensajeError;
     switch (error.code) {
@@ -37,3 +44,15 @@ export const crearUsuario = async ({ usuario, contrasena, rol, ...otrosDatos }) 
     return { exito: false, mensaje: mensajeError };
   }
 };
+
+// ======================================================
+// RESUMEN DE CAMBIOS:
+// 
+// 1. Se agregó `uid: user.uid` al objeto de retorno exitoso
+// 2. Ahora cuando llames a crearUsuario(), recibirás:
+//    { exito: true, mensaje: "...", uid: "abc123..." }
+// 3. Este UID es el mismo que se usa como ID del documento
+//    en la colección "usuarios"
+// 4. Puedes usar este UID para crear documentos relacionados
+//    en otras colecciones (como "preceptores")
+// ======================================================
