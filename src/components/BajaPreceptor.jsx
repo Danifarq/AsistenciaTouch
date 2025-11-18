@@ -1,25 +1,14 @@
-// ======================================================
-// GUÍA PARA NUEVOS DESARROLLADORES - BajaPreceptor.jsx
-// ======================================================
-//
-//  Este componente permite eliminar preceptores.
-// Borra los registros tanto de "usuarios" como de "preceptores" en Firestore.
-//
-//  DEPENDENCIAS PRINCIPALES:
-// - React: manejo de estados y renderizado.
-// - Firebase Firestore: lectura y eliminación de documentos.
-// - BotonRedirigir: volver al panel admin.
-// - CSS: estilos visuales específicos.
-//
-// ======================================================
-
 import React, { useState, useEffect } from "react";
 import { db } from "../firebase/firebase";
 import { collection, getDocs, deleteDoc, doc, query, where } from "firebase/firestore";
+import { usePreceptores } from "../hooks/usePreceptores";   
 import '../css/BajaPreceptor.css';
 import BotonRedirigir from "../components/BotonRedirigir";
 
 const BajaPreceptor = () => {
+  // ✅ El hook debe ir ADENTRO del componente
+  const { desactivarPreceptor } = usePreceptores();
+
   const [preceptores, setPreceptores] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -43,18 +32,21 @@ const BajaPreceptor = () => {
   }, []);
 
   const handleEliminar = async (id) => {
-    const confirmar = !window.confirm("¿Estás seguro de eliminar este preceptor?");
+    const confirmar = window.confirm("¿Estás seguro de eliminar este preceptor?");
     if (!confirmar) return;
 
     try {
-      await desactivarPreceptor(id); // Desactivar en "preceptores"
+      await desactivarPreceptor(id); 
       setMensaje("Preceptor eliminado correctamente ✅");
     } catch (error) {
-      setError("Ocurrió un error al eliminar el preceptor.");  
+      console.error(error);
+      setError("Ocurrió un error al eliminar el preceptor.");
     }
   };
 
-  if (loading) return <p style={{ textAlign: "center", marginTop: "2rem" }}>Cargando preceptores...</p>;
+  if (loading) {
+    return <p style={{ textAlign: "center", marginTop: "2rem" }}>Cargando preceptores...</p>;
+  }
 
   return (
     <div className="alta-profesor-container">
@@ -62,6 +54,7 @@ const BajaPreceptor = () => {
         <h1>Baja de Preceptor</h1>
 
         {error && <p className="mensaje-error">{error}</p>}
+        {mensaje && <p className="mensaje-exito">{mensaje}</p>}
 
         {preceptores.length === 0 ? (
           <p>No hay preceptores registrados.</p>

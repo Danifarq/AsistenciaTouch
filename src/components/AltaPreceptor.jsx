@@ -6,7 +6,7 @@ import "../css/AltaPreceptor.css";
 
 // HOOKS
 import { usePreceptores } from "../hooks/usePreceptores";
-import { crearUsuario } from "../hooks/crearUsuario";
+import { crearUsuario } from "../hooks/useUsuarios";
 
 const AltaPreceptor = () => {
   const { preceptores, activarPreceptor } = usePreceptores();
